@@ -8,6 +8,11 @@ library shared;
 export 'src/data/models/user.dart';
 
 
+// Blocs
+export 'src/blocs/login_bloc.dart';
+export 'src/blocs/register_bloc.dart';
+
+
 // Global blocs
 export 'src/global_blocs/app_global_bloc.dart';
 
