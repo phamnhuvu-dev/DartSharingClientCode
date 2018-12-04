@@ -9,7 +9,6 @@ class Routes {
   static final auth = RouteDefinition(
     routePath: RoutePaths.auth,
     component: auth_component_template.AuthComponentNgFactory,
-
   );
 
   static final all = <RouteDefinition>[

@@ -5,7 +5,6 @@ import 'package:angular_router/angular_router.dart';
 // AngularDart info: https://webdev.dartlang.org/angular
 // Components info: https://webdev.dartlang.org/components
 
-
 @Component(
   selector: 'my-app',
   styleUrls: ['app_component.css'],

@@ -1,0 +1,8 @@
+.box {
+    padding: 0 16px 16px;
+    display: flex;
+    margin: 0 25%;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: aquamarine;
+}
