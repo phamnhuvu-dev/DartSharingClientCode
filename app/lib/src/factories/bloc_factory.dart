@@ -1,0 +1,19 @@
+import 'package:app/src/base_bloc.dart';
+import 'package:app/src/blocs/local_blocs/login_bloc.dart';
+import 'package:app/src/blocs/local_blocs/register_bloc.dart';
+import 'package:app/src/blocs/global_blocs/app_global_bloc.dart';
+
+class BlocFactory {
+  B create<B extends BaseBloc>() {
+    switch (B) {
+      case AppGlobalBloc:
+        return AppGlobalBloc() as B;
+
+      case LoginBloc:
+        return LoginBloc() as B;
+
+      case RegisterBloc:
+        return RegisterBloc() as B;
+    }
+  }
+}

@@ -3,13 +3,26 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/app/angular_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/app/angular_app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/app/angular_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/app/flutter_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/app/flutter_app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/app/flutter_app/build" />
       <excludeFolder url="file://$MODULE_DIR$/app/shared/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/app/shared/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/app/shared/build" />
+      <excludeFolder url="file://$MODULE_DIR$/client/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/client/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/client/angular_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/client/angular_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/client/build" />
+      <excludeFolder url="file://$MODULE_DIR$/client/flutter_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/client/flutter_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/client/flutter_app/build" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>

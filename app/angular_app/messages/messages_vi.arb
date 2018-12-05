@@ -1,0 +1,14 @@
+{
+  "@@locale": "vi",
+  "@@last_modified": "2018-12-06T00:00:57.286070",
+  "Add": "Thêm",
+  "@Add": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Hello": "Xin Chào",
+  "@Hello": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
