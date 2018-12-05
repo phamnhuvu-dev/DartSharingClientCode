@@ -1,0 +1,10 @@
+{
+  "@@locale": "vi",
+  "@@last_modified": "2018-12-05T13:31:00.341780",
+  "Hello": "Xin Chào",
+  "@Hello": {
+    "description": "Hello",
+    "type": "text",
+    "placeholders": {}
+  }
+}

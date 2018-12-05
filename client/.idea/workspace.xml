@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea318079-8c0f-4c46-a3f9-28ffaabb9ebf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/DartSharingClientCode.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/frontend/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/extract.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/generate.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/lib/src/data/repositories/repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/lib/src/data/repositories/specification.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/lib/src/factories/bloc_factory.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/lib/src/modules/api_service/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app/shared/lib/src/modules/validator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/app_component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/angular_app/messages/messages_vi.arb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/base_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/blocs/global_blocs/app_global_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/blocs/local_blocs/login_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/blocs/local_blocs/register_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/data/models/user.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/data/repositories/repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/data/repositories/specification.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/factories/bloc_factory.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/modules/api_service/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/modules/validator.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/lib/src/statics/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/angular_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/angular_app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/frontend/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/analysis_options.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/app_component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/app_component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/app_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/app_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/app_component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/css/box.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/css/box.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/css/input.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/css/input.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/auth_component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/auth_component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/auth_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/auth_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/auth_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/auth_component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/login/login_component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/login/login_component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/login/login_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/login/login_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/login/login_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/login/login_component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/register/register_component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/register/register_component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/register/register_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/register/register_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/register/register_component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/register/register_component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/routes/route_paths.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/routes/route_paths.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/features/auth/routes/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/features/auth/routes/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/routes/route_paths.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/routes/route_paths.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/lib/src/routes/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/lib/src/routes/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/test/app_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/test/app_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/web/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/web/favicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/web/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/web/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/web/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/angular_app/web/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular_app/web/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/.metadata" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/.metadata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/kotlin/com/phamnhuvu/flutterapp/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/kotlin/com/phamnhuvu/flutterapp/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/drawable/launch_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/android/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/android/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/AppDelegate.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Base.lproj/LaunchScreen.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Base.lproj/Main.storyboard" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/ios/Runner/Runner-Bridging-Header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/bloc_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/bloc_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/factories/bloc_factory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/factories/bloc_factory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/factories/screen_widget_factory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/factories/screen_widget_factory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/features/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/features/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/features/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/features/register_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/features/splash_creen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/features/splash_creen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/generated/i18n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/generated/i18n.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/res/values/strings_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/res/values/strings_en.arb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/flutter_app/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/flutter_app/test/widget_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/shared/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/shared/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/shared/lib/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../app/shared/lib/shared.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/shared/lib/src/blocs/login_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../app/shared/lib/src/blocs/local_blocs/login_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/shared/lib/src/blocs/register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../app/shared/lib/src/blocs/local_blocs/register_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/shared/lib/src/global_blocs/app_global_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../app/shared/lib/src/blocs/global_blocs/app_global_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../app/shared/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../app/shared/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/Gopkg.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/Gopkg.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/Gopkg.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/Gopkg.toml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="293376726">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="312" />
+    <option name="y" value="34" />
+    <option name="width" value="1306" />
+    <option name="height" value="985" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea318079-8c0f-4c46-a3f9-28ffaabb9ebf" name="Default Changelist" comment="" />
+      <created>1543994825989</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543994825989</updated>
+      <workItem from="1543994827206" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="312" y="34" width="1306" height="985" extended-state="0" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980545" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" visible="true" weight="0.32922733" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>
