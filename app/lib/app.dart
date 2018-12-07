@@ -21,5 +21,5 @@ export 'src/statics/routes.dart';
 
 
 // Src
-export 'src/base_bloc.dart';
+export 'package:app/src/blocs/bloc.dart';
 // TODO: Export any libraries intended for clients of this package.

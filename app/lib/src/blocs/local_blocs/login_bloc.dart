@@ -1,6 +1,7 @@
-import 'package:app/src/base_bloc.dart';
+import 'package:app/src/blocs/bloc.dart';
 
-class LoginBloc implements BaseBloc {
+class LoginBloc extends Bloc {
+
   @override
   void dispose() {
     // TODO: implement dispose

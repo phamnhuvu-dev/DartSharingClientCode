@@ -1,13 +1,12 @@
-import 'package:app/src/data/repositories/specification.dart';
+import 'dart:async';
 
-abstract class Repository<R> {
-  List<R> getListBy(Specification specification);
+abstract class Repository<R, I> {
 
-  R getBy(Specification specification);
+  Future<List<dynamic>> get<I>(Map values);
 
-  bool save(R item);
+  Future<List<dynamic>> insertList<I>(dynamic items);
 
-  bool update(R item);
+  Future<List<dynamic>> updateList<I>(List<R> items);
 
-  bool delete(R item);
+  Future<List<dynamic>> deleteList<I>(List<R> items);
 }

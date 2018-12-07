@@ -4,7 +4,7 @@ import 'package:app/app.dart';
 
 
 class BlocFactory {
-  static B create<B extends BaseBloc>(BuildContext context) {
+  static B create<B extends Bloc>(BuildContext context) {
     switch (B) {
       case AppGlobalBloc:
         final appProvider = BlocProvider.of<AppGlobalBloc>(context);

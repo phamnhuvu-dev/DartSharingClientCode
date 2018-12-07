@@ -17,6 +17,12 @@ class RequestValue {
 
 
 abstract class ApiService {
+
+  static A create<A extends ApiService>() {
+    ClassMirror cm = reflectClass(A);
+    return cm.newInstance(Symbol.empty, []).reflectee as A;
+  }
+
   @override
   dynamic noSuchMethod(Invocation invocation) {
     ClassMirror cm = reflectClass(runtimeType);
