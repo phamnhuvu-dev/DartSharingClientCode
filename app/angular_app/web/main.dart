@@ -6,8 +6,6 @@ import 'package:intl/intl_browser.dart';
 
 import 'main.template.dart' as self;
 
-
-
 @GenerateInjector(
   routerProvidersHash, // You can use routerProviders in production
 )

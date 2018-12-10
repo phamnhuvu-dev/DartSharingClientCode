@@ -1,14 +1,16 @@
+import 'package:app/app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bloc_provider.dart';
 import 'package:flutter_app/factories/bloc_factory.dart';
 import 'package:flutter_app/factories/screen_widget_factory.dart';
+import 'package:flutter_app/features/bloc_provider.dart';
 import 'package:flutter_app/features/login_screen.dart';
 import 'package:flutter_app/features/register_screen.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:app/app.dart';
 
-void main() => runApp(App());
+void main() {
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   @override
