@@ -3,25 +3,25 @@ import 'package:app/src/data/repositories/repository.dart';
 
 class UserRepository implements Repository<User> {
   @override
-  Future<List> delete<I extends User>(List<User> items) {
+  Future<void> delete({List<User> items}) {
     // TODO: implement delete
     return null;
   }
 
   @override
-  Future<List> get<I extends User>(List values) {
+  Future<List<User>> get({Map<String, dynamic> by}) {
     // TODO: implement get
     return null;
   }
 
   @override
-  Future<List> insert<I extends User>(List items) {
+  Future<void> insert({List items}) {
     // TODO: implement insert
     return null;
   }
 
   @override
-  Future<List> update<I extends User>(List<User> items) {
+  Future<void> update({List<User> items}) {
     // TODO: implement update
     return null;
   }

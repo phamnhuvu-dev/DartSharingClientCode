@@ -1,10 +1,9 @@
 abstract class Repository<R> {
+  Future<List<R>> get({Map<String, dynamic> by});
 
-  Future<List<dynamic>> get<I extends R>(List<dynamic> values);
+  Future<void> insert({List<dynamic> items});
 
-  Future<List<dynamic>> insert<I extends R>(List<dynamic> items);
+  Future<void> update({List<R> items});
 
-  Future<List<dynamic>> update<I extends R>(List<R> items);
-
-  Future<List<dynamic>> delete<I extends R>(List<R> items);
+  Future<void> delete({List<R> items});
 }
