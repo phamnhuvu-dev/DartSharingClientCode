@@ -1,4 +1,4 @@
-import 'package:app/src/blocs/bloc.dart';
+import 'package:app/src/features/bloc.dart';
 
 class AppGlobalBloc implements Bloc {
   @override

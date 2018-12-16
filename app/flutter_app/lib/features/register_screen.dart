@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/app.dart';
+import 'package:flutter_app/widgets/main_background.dart';
 
 class RegisterScreen extends StatefulWidget {
   final RegisterBloc registerBloc;
@@ -14,10 +15,8 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: body(),
-      ),
+    return MainBackground(
+      child: body(),
     );
   }
 
