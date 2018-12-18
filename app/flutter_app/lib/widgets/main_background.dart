@@ -10,11 +10,13 @@ class MainBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [AppColors.green, AppColors.main],
+            colors: [AppColors.bright_turquoise, AppColors.malibu],
           ),
         ),
         child: SafeArea(
