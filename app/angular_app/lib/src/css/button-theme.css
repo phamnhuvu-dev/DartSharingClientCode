@@ -1,0 +1,16 @@
+.dodger-blue-button-theme {
+    background-color: #3C5CFE;
+    color: white;
+}
+.dodger-blue-button-theme:hover {
+    background-color: #3681E5;
+}
+
+.malibu-button-theme {
+    background-color: #48C5FC;
+    color: white;
+}
+.malibu-button-theme:hover {
+    background-color: #36DEE5;
+}
+

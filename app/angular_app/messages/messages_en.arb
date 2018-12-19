@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2018-12-06T00:00:57.286070",
+  "@@last_modified": "2018-12-19T13:31:43.482899",
   "Add": "Add",
   "@Add": {
     "type": "text",
@@ -8,6 +8,16 @@
   },
   "Hello": "Hello",
   "@Hello": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Login": "Login",
+  "@Login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Register": "Register",
+  "@Register": {
     "type": "text",
     "placeholders": {}
   }

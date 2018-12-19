@@ -10,5 +10,15 @@
   "@Hello": {
     "type": "text",
     "placeholders": {}
+  },
+  "Login": "Đăng Nhập",
+  "@Login": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Register": "Đăng Ký",
+  "@Register": {
+    "type": "text",
+    "placeholders": {}
   }
 }

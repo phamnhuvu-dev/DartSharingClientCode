@@ -1,9 +1,15 @@
-<div class="left-container">
-    <h1>Dart</h1>
-    <h2>Sharing Client Code</h2>
-    <h3>Angular Dart</h3>
-    <h3>Flutter</h3>
-</div>
-<div class="right-container">
-    <router-outlet [routes]="Routes.all"></router-outlet>
+<div class="parent">
+    <div class="welcome-box">
+        <div class="welcome-box-background"></div>
+        <div class="outline"></div>
+        <div class="middle-line"></div>
+        <div class="welcome-box-content">
+            <h1 class="welcome-text">Welcome to<br>Dart Sharing Code Demo</h1>
+        </div>
+        <div class="form-box">
+            <div class="form-center">
+                <router-outlet [routes]="Routes.all"></router-outlet>
+            </div>
+        </div>
+    </div>
 </div>

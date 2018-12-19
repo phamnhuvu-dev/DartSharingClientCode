@@ -1,15 +1,30 @@
 <div class="box">
-    <h1>Đăng ký</h1>
-    <form action="">
+    <div class="stack">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="stack">
+        <svg height="100%" width="100%">
+            <text alignment-baseline="ideographic"
+                  text-anchor="middle"
+                  font-size="24"
+                  fill="#3C5CFE"
+                  font-weight="bold"
+                  x="50%" y="50">{{I18n.register}}
+            </text>
+        </svg>
+    </div>
+
+    <div style="
+        z-index: 1;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 100%">
         <input type="text" placeholder="Họ tên">
-        <br>
         <input type="text" placeholder="Tên tài khoản">
-        <br>
         <input type="text" placeholder="Địa chỉ Email">
-        <br>
         <input type="password" placeholder="Mật khẩu">
-        <br>
         <input type="password" placeholder="Xác nhận mật khẩu">
-        <input type="submit" value="Đăng ký">
-    </form>
+        <button class="round-button dodger-blue-button-theme">{{I18n.register}}</button>
+    </div>
 </div>
