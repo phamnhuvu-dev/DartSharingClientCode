@@ -4,6 +4,7 @@ import 'package:app/src/modules/api_service.dart';
 import 'package:http/http.dart';
 
 class UserApiService extends ApiService {
+
   Future<Response> login({
     method = POST,
     url = "$HOST/user/login",
