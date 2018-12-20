@@ -1,0 +1,1 @@
+webdev build --release --output web:build/web
