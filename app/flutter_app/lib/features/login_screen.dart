@@ -2,11 +2,11 @@ import 'package:app/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/bloc_provider.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
-import 'package:flutter_app/widgets/buttons/round_button.dart';
-import 'package:flutter_app/widgets/main_background.dart';
+import 'package:flutter_app/widgets/buttons/rect_button.dart';
+import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/oval_head_card.dart';
-import 'package:flutter_app/widgets/scrollable_content_center.dart';
-import 'package:flutter_app/widgets/textfield/round_textfield.dart';
+import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
+import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   final LoginBloc loginBloc;
@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocProvider<LoginBloc>(
       bloc: widget.loginBloc,
-      child: MainBackground(
+      child: GradientScaffold(
         child: body(),
       ),
     );
@@ -55,11 +55,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       top: 20.0,
                       bottom: 15.0,
                     ),
-                    child: RoundTextField(
+                    child: RectTextField(
                       hintText: "Id/Email",
                     ),
                   ),
-                  RoundTextField(
+                  RectTextField(
                     hintText: "Password",
                   ),
                   Padding(
@@ -67,13 +67,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       top: 30.0,
                       bottom: 10.0,
                     ),
-                    child: RoundButton(
+                    child: RectButton(
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
-                      onTap: () => Navigator.of(context).pushNamed(""),
+                      onTap: () => Navigator.of(context).pushNamed("/main"),
                     ),
                   ),
-                  RoundButton(
+                  RectButton(
                     text: "Register",
                     theme: MalibuButtonTheme(),
                     onTap: () =>

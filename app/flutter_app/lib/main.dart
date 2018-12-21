@@ -1,15 +1,25 @@
+import 'dart:io';
+
 import 'package:app/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/factories/bloc_factory.dart';
-import 'package:flutter_app/factories/screen_widget_factory.dart';
+import 'package:flutter_app/factories/screen_factory.dart';
 import 'package:flutter_app/features/bloc_provider.dart';
 import 'package:flutter_app/features/login_screen.dart';
+import 'package:flutter_app/features/main_screen.dart';
 import 'package:flutter_app/features/register_screen.dart';
 import 'package:flutter_app/generated/i18n.dart';
+import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:device_info/device_info.dart';
 
-void main() {
-  runApp(App());
+void main() async {
+  bool isIphoneX = false;
+  if (Platform.isIOS) {
+    IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
+    isIphoneX = iosInfo.name == "iPhone X";
+  }
+  runApp(DeviceInfo(isIPhoneX: isIphoneX, child: App()));
 }
 
 class App extends StatelessWidget {
@@ -27,10 +37,12 @@ class App extends StatelessWidget {
         routes: {
 //          Routes.initial: (context) =>
 //              ScreenWidgetFactory.create<SplashScreen>(context),
+          "/main": (context) => ScreenFactory.create<MainScreen>(context),
+
           Routes.initial: (context) =>
-              ScreenWidgetFactory.create<LoginScreen>(context),
+              ScreenFactory.create<LoginScreen>(context),
           Routes.register: (context) =>
-              ScreenWidgetFactory.create<RegisterScreen>(context),
+              ScreenFactory.create<RegisterScreen>(context),
         },
         initialRoute: Routes.initial,
       ),

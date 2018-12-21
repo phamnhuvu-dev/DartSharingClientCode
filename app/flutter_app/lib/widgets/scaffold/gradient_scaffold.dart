@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 
-class MainBackground extends StatelessWidget {
+class GradientScaffold extends StatelessWidget {
   final Widget child;
 
-  const MainBackground({Key key, this.child}) : super(key: key);
+  const GradientScaffold({Key key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

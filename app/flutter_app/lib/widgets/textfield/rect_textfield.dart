@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 
-class RoundTextField extends StatelessWidget {
+class RectTextField extends StatelessWidget {
   final String hintText;
 
-  const RoundTextField({Key key, this.hintText = ""}) : super(key: key);
+  const RectTextField({Key key, this.hintText = ""}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

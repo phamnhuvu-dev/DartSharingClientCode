@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:app/app.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
-import 'package:flutter_app/widgets/buttons/round_button.dart';
-import 'package:flutter_app/widgets/main_background.dart';
+import 'package:flutter_app/widgets/buttons/rect_button.dart';
+import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/oval_head_card.dart';
-import 'package:flutter_app/widgets/scrollable_content_center.dart';
-import 'package:flutter_app/widgets/textfield/round_textfield.dart';
+import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
+import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
   final RegisterBloc registerBloc;
@@ -18,11 +18,12 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
   ScrollableContentCenter centerContentHelper = ScrollableContentCenter();
 
   @override
   Widget build(BuildContext context) {
-    return MainBackground(
+    return GradientScaffold(
       child: body(),
     );
   }
@@ -49,7 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   textfield(hintText: "Email"),
                   textfield(hintText: "Password"),
                   textfield(hintText: "Confirm password"),
-                  RoundButton(
+                  RectButton(
                     text: "Register",
                     theme: DodgerBlueButtonTheme(),
                   )
@@ -65,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget textfield({String hintText}) {
     return Padding(
       padding: EdgeInsets.only(bottom: 15.0),
-      child: RoundTextField(
+      child: RectTextField(
         hintText: hintText,
       ),
     );
