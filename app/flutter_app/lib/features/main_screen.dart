@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/todo/todo_list_screen.dart';
 import 'package:flutter_app/widgets/bottom_bar.dart';
 import 'package:flutter_app/widgets/buttons/add_button.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
@@ -19,6 +20,10 @@ class _MainScreenState extends State<MainScreen> {
   Widget body() {
     return Stack(
       children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(bottom: 64.0 / 2),
+          child: TodoListScreen(),
+        ),
         addButton(),
         bottomBar(),
       ],
@@ -29,8 +34,10 @@ class _MainScreenState extends State<MainScreen> {
     return Positioned(
       left: 0.0,
       right: 0.0,
-      bottom: 64.0/2 + (64-46.0)/2,
-      child: AddButton(onTap: () {},),
+      bottom: 64.0 / 2 + (64 - 46.0) / 2,
+      child: AddButton(
+        onTap: () {},
+      ),
     );
   }
 

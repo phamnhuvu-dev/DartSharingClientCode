@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/buttons/base_button.dart';
-
+import 'package:flutter_app/widgets/buttons/button_theme.dart';
 
 class RectButton extends BaseButton {
   RectButton({
     Key key,
-    theme,
-    text,
     onTap,
+    AppButtonTheme theme,
+    String text,
+    double border = 5.0,
+    double height = 40.0,
   }) : super(
           key: key,
-          shape: null,
+          onTap: onTap,
           theme: theme,
           text: text,
-          onTap: onTap,
-          border: const BorderRadius.all(Radius.circular(5.0)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(border)),
           size: Size(
             double.maxFinite,
-            40.0,
+            height,
           ),
           child: Center(
             child: Text(

@@ -7,7 +7,6 @@ class BaseButton extends StatelessWidget {
   final AppButtonTheme theme;
   final String text;
   final onTap;
-  final border;
   final Size size;
   final Widget child;
 
@@ -17,7 +16,6 @@ class BaseButton extends StatelessWidget {
     this.theme,
     this.text,
     this.onTap,
-    this.border,
     this.size,
     this.child,
   }) : super(key: key);
@@ -25,12 +23,10 @@ class BaseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      borderRadius: border,
       color: theme.color,
       shape: shape,
       child: InkWell(
         customBorder: shape,
-        borderRadius: border,
         splashColor: AppColors.bright_turquoise,
         child: ConstrainedBox(
           constraints: BoxConstraints.tight(size),

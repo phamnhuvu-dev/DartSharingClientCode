@@ -9,10 +9,10 @@ class AddButton extends BaseButton {
     onTap,
   }) : super(
           key: key,
-          shape: const CircleBorder(),
-          theme: const DodgerBlueButtonTheme(),
           onTap: onTap,
           size: const Size(46.0, 46.0),
+          shape: const CircleBorder(),
+          theme: const DodgerBlueButtonTheme(),
           child: const Icon(
             Icons.add,
             color: AppColors.white,
