@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-const HOST = "";
+const HOST = "https://dart-sharing-code.herokuapp.com";
 
 const GET = 0;
 const POST = 1;
