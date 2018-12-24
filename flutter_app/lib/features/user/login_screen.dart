@@ -12,11 +12,9 @@ import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
   final UserGlobalBloc userGlobalBloc;
-  final LoginBloc loginBloc;
 
   const LoginScreen({
     Key key,
-    @required this.loginBloc,
     @required this.userGlobalBloc,
   }) : super(key: key);
 
@@ -28,31 +26,29 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   ScrollableContentCenter _contentCenter = ScrollableContentCenter();
+  StreamSubscription<User> streamSubscription;
 
   @override
   void initState() {
     super.initState();
-    print("init");
-    widget.userGlobalBloc.user.listen((user) {
-      print(user);
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LoginBloc>(
-      bloc: widget.loginBloc,
-      child: GradientScaffold(
-        child: body(),
-      ),
+    return GradientScaffold(
+      child: body(),
     );
   }
 
   Widget body() {
     WidgetsBinding.instance.addPostFrameCallback((value) {
       _contentCenter.execute(this);
+    });
+
+    streamSubscription = widget.userGlobalBloc.user.listen((user) {
+      streamSubscription.cancel();
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
     });
 
     return SingleChildScrollView(
@@ -80,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: RectButton(
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
-                      onTap: () => widget.loginBloc.checkValidLogin(
+                      onTap: () => widget.userGlobalBloc.checkValidLogin(
                             account: accountController.text,
                             password: passwordController.text,
                           ),
@@ -103,14 +99,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget streamLogin() {
     return StreamBuilder(
-      stream: widget.loginBloc.validLogin,
+      stream: widget.userGlobalBloc.validLogin,
       builder: (
         BuildContext context,
         AsyncSnapshot<Tuple3<String, String, bool>> snapshot,
       ) {
-        print(snapshot.data);
-
-        final login = Column(
+        if (snapshot.data != null && snapshot.data.item3) {
+          widget.userGlobalBloc.login(
+            account: accountController.text,
+            password: passwordController.text,
+            isEmail: false,
+          );
+        }
+        return Column(
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(
@@ -128,15 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ],
         );
-
-        if (snapshot.data != null && snapshot.data.item3) {
-          widget.userGlobalBloc.login(
-            account: accountController.text,
-            password: passwordController.text,
-            isEmail: false,
-          );
-        }
-        return login;
+        ;
       },
     );
   }

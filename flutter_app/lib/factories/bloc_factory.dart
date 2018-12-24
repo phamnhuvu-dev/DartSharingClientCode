@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/features/bloc_provider.dart';
 import 'package:core_app/core_app.dart';
 
+
 class BlocFactory {
   static B create<B extends Bloc>({BuildContext context}) {
     switch (B) {
@@ -11,11 +12,8 @@ class BlocFactory {
 
       case UserGlobalBloc:
         final userGlobalBloc = BlocProvider.of<UserGlobalBloc>(context);
-        return (userGlobalBloc == null ? UserGlobalBloc() : userGlobalBloc)
+        return (userGlobalBloc == null ? UserGlobalBloc(validator: Validator()) : userGlobalBloc)
             as B;
-
-      case LoginBloc:
-        return LoginBloc() as B;
 
       case RegisterBloc:
         return RegisterBloc() as B;

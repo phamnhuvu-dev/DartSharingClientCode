@@ -14,7 +14,6 @@ class ScreenFactory {
 
       case LoginScreen:
         return LoginScreen(
-          loginBloc: BlocFactory.create<LoginBloc>(),
           userGlobalBloc: BlocFactory.create<UserGlobalBloc>(context: context),
         ) as W;
 

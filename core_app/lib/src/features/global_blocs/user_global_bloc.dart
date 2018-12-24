@@ -5,10 +5,14 @@ import 'package:rxdart/rxdart.dart';
 
 class UserGlobalBloc implements Bloc {
   final UserRepository userRepository;
+  final Validator validator;
 
   BehaviorSubject<User> _userSubject;
 
-  UserGlobalBloc({this.userRepository}) {
+  UserGlobalBloc({
+    this.userRepository,
+    this.validator,
+  }) {
     _userSubject = BehaviorSubject<User>();
   }
 
@@ -25,7 +29,6 @@ class UserGlobalBloc implements Bloc {
 //      is_email: isEmail,
 //    );
 
-    print("OK");
     _userSubject.add(User("", "adfa", "asdfaf", "adfaf"));
   }
 
@@ -42,6 +45,45 @@ class UserGlobalBloc implements Bloc {
       password: password,
     );
   }
+
+  //////// Valid Login ////////
+  final _validLoginSubject = BehaviorSubject<Tuple3<String, String, bool>>();
+
+  Stream<Tuple3<String, String, bool>> get validLogin =>
+      _validLoginSubject.stream;
+
+  checkValidLogin({String account, String password}) {
+    String messageAccount = "";
+    String messagePassword = "";
+
+    if (account.isEmpty) {
+      messageAccount = "Không được bỏ trống";
+    } else if (!(validator.validEmail(account) ||
+        validator.validAccountName(account))) {
+      messageAccount = "Tên tài khoản/Email không hợp lệ";
+    }
+
+    if (password.isEmpty) {
+      messagePassword = "Không được bỏ trống";
+    }
+
+    if (messageAccount.isEmpty && messagePassword.isEmpty) {
+      login(account: account, password: password, isEmail: validator.validEmail(account));
+    } else {
+      _validLoginSubject.value = Tuple3(
+        messageAccount,
+        messagePassword,
+        messageAccount.isEmpty && messagePassword.isEmpty,
+      );
+    }
+  }
+
+  //////// Valid Register ////////
+  final _validRegisterSubject =
+      BehaviorSubject<Tuple6<String, String, String, String, String, bool>>();
+
+  Stream<Tuple6<String, String, String, String, String, bool>>
+      get validRegister => _validRegisterSubject.stream;
 
   @override
   void dispose() {
