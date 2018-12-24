@@ -14,7 +14,7 @@ dependencies:
   intl: ^0.15.7
 
   app:
-    path: ../../app
+    path: ../core_app
 
 dev_dependencies:
   angular_test: ^2.1.0
