@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/app.dart';
+import 'package:core_app/core_app.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
 import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
@@ -9,8 +9,10 @@ import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
   final RegisterBloc registerBloc;
+  final UserGlobalBloc userGlobalBloc;
 
-  const RegisterScreen({Key key, @required this.registerBloc})
+  const RegisterScreen(
+      {Key key, @required this.registerBloc, @required this.userGlobalBloc})
       : super(key: key);
 
   @override
@@ -18,6 +20,11 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController accountNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   ScrollableContentCenter centerContentHelper = ScrollableContentCenter();
 
@@ -45,15 +52,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               top: 20.0,
               child: Column(
                 children: <Widget>[
-                  textfield(hintText: "Name"),
-                  textfield(hintText: "Username"),
-                  textfield(hintText: "Email"),
-                  textfield(hintText: "Password"),
-                  textfield(hintText: "Confirm password"),
+                  streamRegister(),
                   RectButton(
                     text: "Register",
                     theme: DodgerBlueButtonTheme(),
-                  )
+                  ),
                 ],
               ),
             )
@@ -63,10 +66,51 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget textfield({String hintText}) {
+  Widget streamRegister() {
+    return StreamBuilder(
+      stream: widget.registerBloc.validRegister,
+      builder: (
+        BuildContext context,
+        AsyncSnapshot<Tuple6<String, String, String, String, String, bool>>
+            snapshot,
+      ) {
+        if (snapshot.data != null && snapshot.data.item6) {
+          Navigator.of(context).pushNamed("/main");
+        }
+
+        return Column(
+          children: <Widget>[
+            textfield(
+              hintText: "Username",
+              controller: usernameController,
+            ),
+            textfield(
+              hintText: "Account name",
+              controller: accountNameController,
+            ),
+            textfield(
+              hintText: "Email",
+              controller: emailController,
+            ),
+            textfield(
+              hintText: "Password",
+              controller: passwordController,
+            ),
+            textfield(
+              hintText: "Confirm password",
+              controller: confirmPasswordController,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget textfield({String hintText, TextEditingController controller}) {
     return Padding(
       padding: EdgeInsets.only(bottom: 15.0),
       child: RectTextField(
+        controller: controller,
         hintText: hintText,
       ),
     );

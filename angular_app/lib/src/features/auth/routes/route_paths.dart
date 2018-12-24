@@ -1,5 +1,5 @@
 import 'package:angular_router/angular_router.dart';
-import 'package:app/app.dart';
+import 'package:core_app/core_app.dart';
 import 'package:angular_app/src/routes/route_paths.dart' as _parent;
 
 class RoutePaths {

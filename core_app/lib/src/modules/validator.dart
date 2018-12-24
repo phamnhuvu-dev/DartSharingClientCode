@@ -7,13 +7,11 @@ class Validator {
         "\\." +
         "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
         ")+");
-    final strMatch = emailRegExp.stringMatch(email);
-    return strMatch == email;
+    return emailRegExp.hasMatch(email);
   }
 
   validAccountName(String accountName) {
     RegExp nameRegExp = new RegExp(r"^[_A-z0-9]*((-|)*[_A-z0-9])*$");
-    final strMatch = nameRegExp.stringMatch(accountName);
-    return strMatch == accountName;
+    return nameRegExp.hasMatch(accountName);
   }
 }

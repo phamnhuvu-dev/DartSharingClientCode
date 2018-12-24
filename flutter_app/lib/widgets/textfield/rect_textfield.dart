@@ -3,8 +3,9 @@ import 'package:flutter_app/statics/app_colors.dart';
 
 class RectTextField extends StatelessWidget {
   final String hintText;
+  final TextEditingController controller;
 
-  const RectTextField({Key key, this.hintText = ""}) : super(key: key);
+  const RectTextField({Key key, this.hintText = "", this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class RectTextField extends StatelessWidget {
       ),
       child: Center(
         child: TextField(
+          controller: controller,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 10.0, right: 10.0),
             hintText: hintText,

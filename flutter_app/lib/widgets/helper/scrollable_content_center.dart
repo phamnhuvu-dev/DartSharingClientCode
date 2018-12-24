@@ -8,15 +8,11 @@ class ScrollableContentCenter {
   void execute(State state) {
     final RenderBox body = bodyKey.currentContext.findRenderObject();
     final RenderBox content = contentKey.currentContext.findRenderObject();
-    final newTop = body.size.height - content.size.height;
+    final newTop = (body.size.height - content.size.height) / 2;
     if (newTop != top) {
-      top = body.size.height - content.size.height;
       state.setState(() {
-        if (top > 0) {
-          top = top / 2;
-        } else {
-          top = 0.0;
-        }
+        top = newTop;
+        if (top < 0) top = 0.0;
       });
     }
   }

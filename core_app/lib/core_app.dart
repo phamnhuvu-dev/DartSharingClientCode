@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library app;
+library core_app;
 
 // Models
 export 'src/data/models/user.dart';
@@ -21,6 +21,10 @@ export 'src/statics/routes.dart';
 
 
 // Src
-export 'package:app/src/features/bloc.dart';
+export 'package:core_app/src/features/bloc.dart';
+export 'package:core_app/src/features/global_blocs/user_global_bloc.dart';
+
+
+export 'package:tuple/tuple.dart';
 
 // TODO: Export any libraries intended for clients of this package.

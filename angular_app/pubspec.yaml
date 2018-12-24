@@ -13,7 +13,7 @@ dependencies:
   angular_router: ^2.0.0-alpha+20
   intl: ^0.15.7
 
-  app:
+  core_app:
     path: ../core_app
 
 dev_dependencies:

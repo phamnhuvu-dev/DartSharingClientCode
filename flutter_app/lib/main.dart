@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:app/app.dart';
+import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/factories/bloc_factory.dart';
 import 'package:flutter_app/factories/screen_factory.dart';
 import 'package:flutter_app/features/bloc_provider.dart';
-import 'package:flutter_app/features/login_screen.dart';
+import 'package:flutter_app/features/user/login_screen.dart';
 import 'package:flutter_app/features/main_screen.dart';
-import 'package:flutter_app/features/register_screen.dart';
+import 'package:flutter_app/features/user/register_screen.dart';
 import 'package:flutter_app/generated/i18n.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,7 +26,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AppGlobalBloc>(
-      bloc: BlocFactory.create(context),
+      bloc: BlocFactory.create(context: context),
       child: MaterialApp(
         localizationsDelegates: [
           S.delegate,
@@ -37,12 +37,13 @@ class App extends StatelessWidget {
         routes: {
 //          Routes.initial: (context) =>
 //              ScreenWidgetFactory.create<SplashScreen>(context),
-          "/main": (context) => ScreenFactory.create<MainScreen>(context),
+          "/main": (context) =>
+              ScreenFactory.create<MainScreen>(context: context),
 
           Routes.initial: (context) =>
-              ScreenFactory.create<LoginScreen>(context),
+              ScreenFactory.create<LoginScreen>(context: context),
           Routes.register: (context) =>
-              ScreenFactory.create<RegisterScreen>(context),
+              ScreenFactory.create<RegisterScreen>(context: context),
         },
         initialRoute: Routes.initial,
       ),

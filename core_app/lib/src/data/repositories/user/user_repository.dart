@@ -1,28 +1,19 @@
-import 'package:app/src/data/models/user.dart';
-import 'package:app/src/data/repositories/repository.dart';
+import 'package:core_app/src/data/models/user.dart';
+import 'package:core_app/src/data/repositories/repository.dart';
+import 'package:core_app/src/data/repositories/user/user_api_service.dart';
 
-class UserRepository implements Repository<User> {
-  @override
-  Future<void> delete({List<User> items}) {
-    // TODO: implement delete
-    return null;
-  }
+abstract class UserRepository {
 
-  @override
-  Future<List<User>> get({Map<String, dynamic> by}) {
-    // TODO: implement get
-    return null;
-  }
+  login({
+    String account,
+    String password,
+    bool is_email,
+  });
 
-  @override
-  Future<void> insert({List items}) {
-    // TODO: implement insert
-    return null;
-  }
-
-  @override
-  Future<void> update({List<User> items}) {
-    // TODO: implement update
-    return null;
-  }
+  register({
+    String username,
+    String account_name,
+    String email,
+    String password,
+  });
 }
