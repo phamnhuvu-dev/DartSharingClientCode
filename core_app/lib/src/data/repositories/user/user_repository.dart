@@ -3,7 +3,7 @@ import 'package:core_app/src/data/repositories/repository.dart';
 import 'package:core_app/src/data/repositories/user/user_api_service.dart';
 import 'package:http/http.dart';
 
-abstract class UserRepository {
+abstract class UserRepository extends Repository<User> {
 
   Future<User> login({
     String account,

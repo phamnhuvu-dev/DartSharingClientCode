@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/features/bloc_provider.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
+import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
 import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/oval_head_card.dart';
 import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
@@ -22,8 +23,8 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> with ScrollableContentCenter {
-
+class _LoginScreenState extends State<LoginScreen>
+    with ScrollableContentCenter {
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   StreamSubscription<User> streamSubscription;
@@ -76,10 +77,23 @@ class _LoginScreenState extends State<LoginScreen> with ScrollableContentCenter 
                     child: RectButton(
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
-                      onTap: () => widget.userGlobalBloc.checkValidLogin(
-                            account: accountController.text,
-                            password: passwordController.text,
-                          ),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (builder) {
+                            return LoadingDialog(
+                              message: "Waiting",
+                              popCallback: widget.userGlobalBloc.cancelRequest,
+                            );
+                          },
+                        );
+
+                        widget.userGlobalBloc.checkValidLogin(
+                          account: accountController.text,
+                          password: passwordController.text,
+                        );
+                      },
                     ),
                   ),
                   RectButton(
@@ -104,9 +118,7 @@ class _LoginScreenState extends State<LoginScreen> with ScrollableContentCenter 
         BuildContext context,
         AsyncSnapshot<Tuple2<String, String>> snapshot,
       ) {
-        if (snapshot.data != null) {
-
-        }
+        if (snapshot.data != null) {}
         return Column(
           children: <Widget>[
             Padding(

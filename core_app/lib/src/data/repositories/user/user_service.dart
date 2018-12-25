@@ -4,7 +4,7 @@ import 'package:core_app/core_app.dart';
 import 'package:core_app/src/data/repositories/user/user_api_service.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
 
-class UserService implements UserRepository {
+class UserService extends UserRepository {
   final UserApiService apiService;
 
   UserService(this.apiService);
