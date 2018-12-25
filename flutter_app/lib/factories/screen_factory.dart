@@ -19,7 +19,6 @@ class ScreenFactory {
 
       case RegisterScreen:
         return RegisterScreen(
-          registerBloc: BlocFactory.create<RegisterBloc>(),
           userGlobalBloc: BlocFactory.create<UserGlobalBloc>(context: context),
         ) as W;
 

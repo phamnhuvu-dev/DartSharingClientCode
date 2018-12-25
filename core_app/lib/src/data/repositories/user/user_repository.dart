@@ -1,16 +1,17 @@
 import 'package:core_app/src/data/models/user.dart';
 import 'package:core_app/src/data/repositories/repository.dart';
 import 'package:core_app/src/data/repositories/user/user_api_service.dart';
+import 'package:http/http.dart';
 
 abstract class UserRepository {
 
-  login({
+  Future<User> login({
     String account,
     String password,
-    bool is_email,
+    String is_email,
   });
 
-  register({
+  Future<User> register({
     String username,
     String account_name,
     String email,

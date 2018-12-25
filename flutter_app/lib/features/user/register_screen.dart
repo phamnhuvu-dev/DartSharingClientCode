@@ -8,25 +8,22 @@ import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
-  final RegisterBloc registerBloc;
   final UserGlobalBloc userGlobalBloc;
 
-  const RegisterScreen(
-      {Key key, @required this.registerBloc, @required this.userGlobalBloc})
+  const RegisterScreen({Key key, @required this.userGlobalBloc})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _RegisterScreenState extends State<RegisterScreen>
+    with ScrollableContentCenter {
   TextEditingController usernameController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-
-  ScrollableContentCenter centerContentHelper = ScrollableContentCenter();
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +34,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget body() {
     WidgetsBinding.instance.addPostFrameCallback((value) {
-      centerContentHelper.execute(this);
+      execute(this);
     });
     return SingleChildScrollView(
-      key: centerContentHelper.bodyKey,
+      key: bodyKey,
       child: Padding(
         padding: EdgeInsets.only(
-            top: centerContentHelper.top, left: 30.0, right: 30.0),
+          top: top,
+          left: 30.0,
+          right: 30.0,
+        ),
         child: Column(
-          key: centerContentHelper.contentKey,
+          key: contentKey,
           children: <Widget>[
             OvalHeadCard(
               title: "Register",
@@ -68,14 +68,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Widget streamRegister() {
     return StreamBuilder(
-      stream: widget.registerBloc.validRegister,
+      stream: widget.userGlobalBloc.validRegister,
       builder: (
         BuildContext context,
-        AsyncSnapshot<Tuple6<String, String, String, String, String, bool>>
-            snapshot,
+        AsyncSnapshot<Tuple5<String, String, String, String, String>> snapshot,
       ) {
-        if (snapshot.data != null && snapshot.data.item6) {
-          Navigator.of(context).pushNamed("/main");
+        if (snapshot.data != null) {
+          print(snapshot.data);
         }
 
         return Column(

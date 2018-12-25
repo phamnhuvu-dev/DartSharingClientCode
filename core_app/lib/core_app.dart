@@ -8,11 +8,15 @@ export 'src/data/models/user.dart';
 
 
 // Blocs
-export 'src/features/local_blocs/register_bloc.dart';
 
 
 // Global blocs
 export 'src/features/global_blocs/app_global_bloc.dart';
+
+
+// Repositories service
+export 'src/data/repositories/user/user_service.dart';
+export 'src/data/repositories/user/user_api_service.dart';
 
 
 // Static

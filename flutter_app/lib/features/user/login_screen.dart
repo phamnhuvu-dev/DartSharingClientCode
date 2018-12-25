@@ -22,10 +22,10 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> with ScrollableContentCenter {
+
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  ScrollableContentCenter _contentCenter = ScrollableContentCenter();
   StreamSubscription<User> streamSubscription;
 
   @override
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget body() {
     WidgetsBinding.instance.addPostFrameCallback((value) {
-      _contentCenter.execute(this);
+      execute(this);
     });
 
     streamSubscription = widget.userGlobalBloc.user.listen((user) {
@@ -52,15 +52,15 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     return SingleChildScrollView(
-      key: _contentCenter.bodyKey,
+      key: bodyKey,
       child: Padding(
         padding: EdgeInsets.only(
-          top: _contentCenter.top,
+          top: top,
           left: 30.0,
           right: 30.0,
         ),
         child: Column(
-          key: _contentCenter.contentKey,
+          key: contentKey,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             OvalHeadCard(
@@ -102,14 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
       stream: widget.userGlobalBloc.validLogin,
       builder: (
         BuildContext context,
-        AsyncSnapshot<Tuple3<String, String, bool>> snapshot,
+        AsyncSnapshot<Tuple2<String, String>> snapshot,
       ) {
-        if (snapshot.data != null && snapshot.data.item3) {
-          widget.userGlobalBloc.login(
-            account: accountController.text,
-            password: passwordController.text,
-            isEmail: false,
-          );
+        if (snapshot.data != null) {
+
         }
         return Column(
           children: <Widget>[

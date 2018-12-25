@@ -12,7 +12,7 @@ class UserApiService extends ApiService {
     url = "$HOST$USER/login",
     String account,
     String password,
-    bool is_email
+    String is_email
   });
 
   Future<Response> register({
