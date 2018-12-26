@@ -127,9 +127,14 @@ class UserGlobalBloc implements Bloc {
             password: password,
           )
           .asStream()
-          .listen((user) {
-        _userSubject.add(user);
-      });
+          .listen(
+        (user) {
+          _userSubject.add(user);
+        },
+        onError: (error) {
+          print(error);
+        },
+      );
     } else {
       _validRegisterSubject.add(
         Tuple5(

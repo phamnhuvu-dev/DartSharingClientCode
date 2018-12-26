@@ -11,7 +11,6 @@ export 'src/data/models/user.dart';
 
 
 // Global blocs
-export 'src/features/global_blocs/app_global_bloc.dart';
 
 
 // Repositories service

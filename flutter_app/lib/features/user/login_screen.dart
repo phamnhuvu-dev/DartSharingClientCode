@@ -30,11 +30,6 @@ class _LoginScreenState extends State<LoginScreen>
   StreamSubscription<User> streamSubscription;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GradientScaffold(
       child: body(),
@@ -78,17 +73,21 @@ class _LoginScreenState extends State<LoginScreen>
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
                       onTap: () {
-                        showDialog(
+//                        showDialog(
+//                          context: context,
+//                          barrierDismissible: false,
+//                          builder: (builder) {
+//                            return LoadingDialog(
+//                              message: "Waiting",
+//                              popCallback: widget.userGlobalBloc.cancelRequest,
+//                            );
+//                          },
+//                        );
+                        LoadingDialog.show(
                           context: context,
-                          barrierDismissible: false,
-                          builder: (builder) {
-                            return LoadingDialog(
-                              message: "Waiting",
-                              popCallback: widget.userGlobalBloc.cancelRequest,
-                            );
-                          },
+                          message: "Waiting",
+                          popCallback: widget.userGlobalBloc.cancelRequest,
                         );
-
                         widget.userGlobalBloc.checkValidLogin(
                           account: accountController.text,
                           password: passwordController.text,

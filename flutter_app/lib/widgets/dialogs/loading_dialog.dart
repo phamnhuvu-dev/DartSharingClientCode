@@ -11,32 +11,41 @@ class LoadingDialog extends StatelessWidget {
     this.popCallback,
   }) : super(key: key);
 
-//
-//  Future<bool> _onWillPop(context) async {
-//    return Navigator.of(context) ?? false;
-//  }
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        child: Dialog(
-          child: Container(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                CircularProgressIndicator(
-                  valueColor:
-                      AlwaysStoppedAnimation<Color>(AppColors.bright_turquoise),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10.0),
-                  child: Text(message),
-                )
-              ],
-            ),
+      child: Dialog(
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              CircularProgressIndicator(
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.bright_turquoise),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10.0),
+                child: Text(message),
+              )
+            ],
           ),
         ),
-        onWillPop: popCallback);
+      ),
+      onWillPop: popCallback,
+    );
+  }
+
+  static show({BuildContext context, String message, WillPopCallback popCallback}) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (builder) {
+        return LoadingDialog(
+          message: "Waiting",
+          popCallback: popCallback,
+        );
+      },
+    );
   }
 }

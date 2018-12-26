@@ -25,8 +25,8 @@ void main() async {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AppGlobalBloc>(
-      bloc: BlocFactory.create(context: context),
+    return BlocProvider<UserGlobalBloc>(
+      bloc: BlocFactory.create<UserGlobalBloc>(context: context),
       child: MaterialApp(
         localizationsDelegates: [
           S.delegate,

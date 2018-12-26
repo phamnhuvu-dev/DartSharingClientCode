@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core_app/core_app.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
+import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
 import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/oval_head_card.dart';
 import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
@@ -56,6 +57,22 @@ class _RegisterScreenState extends State<RegisterScreen>
                   RectButton(
                     text: "Register",
                     theme: DodgerBlueButtonTheme(),
+                    onTap: () {
+
+                      LoadingDialog.show(
+                        context: context,
+                        message: "Waiting",
+                        popCallback: widget.userGlobalBloc.cancelRequest,
+                      );
+
+                      widget.userGlobalBloc.checkValidRegister(
+                        username: usernameController.text,
+                        accountName: accountNameController.text,
+                        email: emailController.text,
+                        password: passwordController.text,
+                        confirmPassword: passwordController.text,
+                      );
+                    },
                   ),
                 ],
               ),

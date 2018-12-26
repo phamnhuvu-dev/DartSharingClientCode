@@ -6,10 +6,6 @@ import 'package:core_app/core_app.dart';
 class BlocFactory {
   static B create<B extends Bloc>({BuildContext context}) {
     switch (B) {
-      case AppGlobalBloc:
-        final appGlobalBloc = BlocProvider.of<AppGlobalBloc>(context);
-        return (appGlobalBloc == null ? AppGlobalBloc() : appGlobalBloc) as B;
-
       case UserGlobalBloc:
         final userGlobalBloc = BlocProvider.of<UserGlobalBloc>(context);
         return (userGlobalBloc == null

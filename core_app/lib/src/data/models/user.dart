@@ -11,4 +11,6 @@ class User {
         username = json["username"],
         accountName = json["account_name"],
         email = json["email"];
+
+
 }
