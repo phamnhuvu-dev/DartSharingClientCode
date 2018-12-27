@@ -2,9 +2,6 @@ import 'dart:io';
 
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/factories/bloc_factory.dart';
-import 'package:flutter_app/factories/screen_factory.dart';
-import 'package:flutter_app/features/bloc_provider.dart';
 import 'package:flutter_app/features/user/login_screen.dart';
 import 'package:flutter_app/features/main_screen.dart';
 import 'package:flutter_app/features/user/register_screen.dart';

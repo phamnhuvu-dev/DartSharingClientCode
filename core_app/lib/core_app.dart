@@ -6,7 +6,7 @@ library core_app;
 // Models
 export 'src/data/models/user.dart';
 
-
+export 'src/features/bloc_provider.dart';
 // Blocs
 
 
@@ -17,6 +17,10 @@ export 'src/data/models/user.dart';
 export 'src/data/repositories/user/user_service.dart';
 export 'src/data/repositories/user/user_api_service.dart';
 
+// Factories
+export 'src/factories/bloc_factory.dart';
+export 'src/factories/repository_factory.dart';
+export 'src/factories/screen_factory.dart';
 
 // Static
 export 'src/statics/routes.dart';

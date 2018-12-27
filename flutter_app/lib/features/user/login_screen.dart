@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/bloc_provider.dart';
+import 'package:core_app/src/features/bloc_provider.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
 import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
