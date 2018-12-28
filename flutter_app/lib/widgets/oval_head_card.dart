@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
+import 'package:rxdart/subjects.dart';
 
 class OvalHeadCard extends StatefulWidget {
-  final enableSetState;
   final String title;
   final Widget child;
   final double left;
@@ -20,7 +20,6 @@ class OvalHeadCard extends StatefulWidget {
     this.top = 0.0,
     this.right = 20.0,
     this.bottom = 25.0,
-    this.enableSetState = false,
   }) : super(key: key);
 
   @override
@@ -30,21 +29,26 @@ class OvalHeadCard extends StatefulWidget {
 class _OvalHeadCard extends State<OvalHeadCard> {
   double baseline = 50.0;
   double fontSize = 20.0;
-  Size _size = Size(0.0, 0.0);
   GlobalKey _keyChild = GlobalKey();
+  BehaviorSubject<Size> sizeSubject =
+      BehaviorSubject(seedValue: Size(0.0, 0.0));
 
   _updateDrawCustom() {
     final RenderBox renderBox = _keyChild.currentContext.findRenderObject();
-    if (_size.height != renderBox.size.height ||
-        _size.width != renderBox.size.width) {
-      _size = Size(
+    final size = sizeSubject.value;
+    if (size.height != renderBox.size.height ||
+        size.width != renderBox.size.width) {
+      sizeSubject.add(Size(
         renderBox.size.width,
         renderBox.size.height,
-      );
-      if (widget.enableSetState) {
-        setState(() {});
-      }
+      ));
     }
+  }
+
+  @override
+  void dispose() {
+    sizeSubject.close();
+    super.dispose();
   }
 
   @override
@@ -54,9 +58,18 @@ class _OvalHeadCard extends State<OvalHeadCard> {
     });
     return Stack(
       children: <Widget>[
-        CustomPaint(
-          size: _size,
-          foregroundPainter: _OvalHeadCardPainter(),
+        StreamBuilder(
+          stream: sizeSubject.stream,
+          builder: (context, AsyncSnapshot<Size> snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              return CustomPaint(
+                size: snapshot.data ?? Size(0.0, 0.0),
+                foregroundPainter: _OvalHeadCardPainter(),
+              );
+            } else {
+              return Placeholder();
+            }
+          },
         ),
         Padding(
           key: _keyChild,

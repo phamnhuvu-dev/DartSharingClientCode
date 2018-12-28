@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:core_app/core_app.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
@@ -20,11 +22,14 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen>
     with ScrollableContentCenter {
+  
   TextEditingController usernameController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+
+  StreamSubscription<User> streamSubscription;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +39,23 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   Widget body() {
-    WidgetsBinding.instance.addPostFrameCallback((value) {
-      execute(this);
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (value) {
+        executeCalculateCenter(this);
+      },
+    );
+
+    streamSubscription = widget.userGlobalBloc.user.listen(
+      (user) {
+        streamSubscription.cancel();
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
+      },
+    );
     return SingleChildScrollView(
       key: bodyKey,
-      child: Padding(
+      child: scrollableContentCenter(
         padding: EdgeInsets.only(
-          top: top,
           left: 30.0,
           right: 30.0,
         ),
@@ -58,7 +72,6 @@ class _RegisterScreenState extends State<RegisterScreen>
                     text: "Register",
                     theme: DodgerBlueButtonTheme(),
                     onTap: () {
-
                       LoadingDialog.show(
                         context: context,
                         message: "Waiting",
