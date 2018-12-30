@@ -4,10 +4,10 @@ import 'package:core_app/core_app.dart';
 import 'package:core_app/src/data/repositories/user/user_api_service.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
 
-class UserService extends UserRepository {
+class UserRepositoryService extends UserRepository {
   final UserApiService apiService;
 
-  UserService(this.apiService);
+  UserRepositoryService(this.apiService);
 
   @override
   Future<User> login({account, password, is_email}) async {
@@ -31,5 +31,30 @@ class UserService extends UserRepository {
     final userJson = json["user"];
     final user = User.fromJson(userJson);
     return user;
+  }
+
+  @override
+  Future<List<User>> get(Map<String, dynamic> by) {
+    // TODO: implement get
+    return null;
+  }
+
+
+  @override
+  Future<String> update(User item) {
+    // TODO: implement update
+    return null;
+  }
+
+  @override
+  Future<User> insert(User item) {
+    // TODO: implement insert
+    return null;
+  }
+
+  @override
+  Future<List<String>> delete({List<User> items}) {
+    // TODO: implement delete
+    return null;
   }
 }

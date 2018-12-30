@@ -22,27 +22,30 @@ void main() async {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UserGlobalBloc>(
-      bloc: BlocFactory.create<UserGlobalBloc>(context: context),
-      child: MaterialApp(
-        localizationsDelegates: [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        routes: {
+    return BlocProvider(
+      bloc: BlocFactory.create<FlutterGlobalBloc>(context: context),
+      child: BlocProvider<UserGlobalBloc>(
+        bloc: BlocFactory.create<UserGlobalBloc>(context: context),
+        child: MaterialApp(
+          localizationsDelegates: [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          routes: {
 //          Routes.initial: (context) =>
 //              ScreenWidgetFactory.create<SplashScreen>(context),
-          "/main": (context) =>
-              ScreenFactory.create<MainScreen>(context: context),
+            "/main": (context) =>
+                ScreenFactory.create<MainScreen>(context: context),
 
-          Routes.initial: (context) =>
-              ScreenFactory.create<LoginScreen>(context: context),
-          Routes.register: (context) =>
-              ScreenFactory.create<RegisterScreen>(context: context),
-        },
-        initialRoute: Routes.initial,
+            Routes.initial: (context) =>
+                ScreenFactory.create<LoginScreen>(context: context),
+            Routes.register: (context) =>
+                ScreenFactory.create<RegisterScreen>(context: context),
+          },
+          initialRoute: Routes.initial,
+        ),
       ),
     );
   }

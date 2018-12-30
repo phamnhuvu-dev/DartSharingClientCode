@@ -14,7 +14,7 @@ export 'src/features/bloc_provider.dart';
 
 
 // Repositories service
-export 'src/data/repositories/user/user_service.dart';
+export 'src/data/repositories/user/user_repository_service.dart';
 export 'src/data/repositories/user/user_api_service.dart';
 
 // Factories
@@ -28,6 +28,7 @@ export 'src/statics/routes.dart';
 
 // Src
 export 'package:core_app/src/features/bloc.dart';
+export 'package:core_app/src/features/global_blocs/flutter_global_bloc.dart';
 export 'package:core_app/src/features/global_blocs/user_global_bloc.dart';
 
 //Module

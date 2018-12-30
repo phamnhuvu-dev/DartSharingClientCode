@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class RepositoryFactory {
   static R create<R>({BuildContext context}) {
     switch (R) {
-      case UserService:
-        return UserService(UserApiService()) as R;
+      case UserRepositoryService:
+        return UserRepositoryService(UserApiService()) as R;
 
       default:
         return null;

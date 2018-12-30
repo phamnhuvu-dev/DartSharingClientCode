@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/todo/todo_list_screen.dart';
+import 'package:flutter_app/features/task/task_list_screen.dart';
 import 'package:flutter_app/widgets/bottom_bar.dart';
 import 'package:flutter_app/widgets/buttons/add_button.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(bottom: 64.0 / 2),
-          child: TodoListScreen(),
+          child: TaskListScreen(),
         ),
         addButton(),
         bottomBar(),

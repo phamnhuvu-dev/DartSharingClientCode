@@ -28,6 +28,7 @@ dependencies:
   shared_preferences: 0.4.3
   validators: 1.0.0+1
   sqflite: 0.13.0+1
+  connectivity: ^0.3.2
 
 dev_dependencies:
   flutter_test:

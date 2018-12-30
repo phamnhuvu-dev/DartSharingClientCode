@@ -1,27 +1,10 @@
-import 'package:core_app/src/modules/check_value.dart';
-
 abstract class Repository<R> {
-  Future<List<R>> get({Map<String, dynamic> by}) {
-    String where = "";
-    by.forEach((key, value) {
-      if (CheckValue.isNumber(value)) {
-        where += key + value;
-      } else {
-        where += key + "'" + value + "'";
-      }
-    });
-    return null;
-  }
 
-  Future<void> insert({List<R> items}) {
-    return null;
-  }
+  Future<List<R>> get(Map<String, dynamic> by);
 
-  Future<void> update({List<R> items}) {
-    return null;
-  }
+  Future<R> insert(R item);
 
-  Future<void> delete({List<R> items}) {
-    return null;
-  }
+  Future<String> update(R item);
+
+  Future<List<String>> delete({List<R> items});
 }

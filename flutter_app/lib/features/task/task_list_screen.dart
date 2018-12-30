@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 
-class TodoListScreen extends StatefulWidget {
+class TaskListScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _TodoListScreenState();
+  State<StatefulWidget> createState() => _TaskListScreenState();
 }
 
-class _TodoListScreenState extends State<TodoListScreen> {
+class _TaskListScreenState extends State<TaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return WhiteScaffold(
@@ -20,7 +20,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
       itemCount: 50,
       padding: EdgeInsets.only(left: 24.0, right: 24.0),
       itemBuilder: (BuildContext context, int index) {
-        return ItemTodo(
+        return ItemTask(
           isLast: index == 50 - 1,
         );
       },
@@ -28,11 +28,11 @@ class _TodoListScreenState extends State<TodoListScreen> {
   }
 }
 
-class ItemTodo extends StatelessWidget {
+class ItemTask extends StatelessWidget {
   final double bottom;
   final bool isLast;
 
-  const ItemTodo({Key key, this.bottom, this.isLast}) : super(key: key);
+  const ItemTask({Key key, this.bottom, this.isLast}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
