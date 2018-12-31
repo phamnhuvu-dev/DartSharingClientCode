@@ -72,16 +72,15 @@ class _LoginScreenState extends State<LoginScreen>
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
                       onTap: () {
-                        print(ScrollableContentCenter.of(context));
-//                        LoadingDialog.show(
-//                          context: context,
-//                          message: "Waiting",
-//                          popCallback: widget.userGlobalBloc.cancelRequest,
-//                        );
-//                        widget.userGlobalBloc.checkValidLogin(
-//                          account: accountController.text,
-//                          password: passwordController.text,
-//                        );
+                        LoadingDialog.show(
+                          context: context,
+                          message: "Waiting",
+                          popCallback: widget.userGlobalBloc.cancelRequest,
+                        );
+                        widget.userGlobalBloc.checkValidLogin(
+                          account: accountController.text,
+                          password: passwordController.text,
+                        );
                       },
                     ),
                   ),
