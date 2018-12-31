@@ -1,5 +1,14 @@
 import 'package:http/http.dart' as http;
 
+Map<String, String> appHeaders = Map();
+
+void updateHeaders(Map<String, String> newHeaders) {
+  print("update");
+  print(newHeaders);
+  appHeaders = newHeaders;
+  print(appHeaders);
+}
+
 const HOST = "https://dart-sharing-code.herokuapp.com";
 
 const GET = 0;
@@ -11,7 +20,7 @@ const METHOD = Symbol("method");
 const URL = Symbol("url");
 const HEADERS = Symbol("headers");
 
-String getSymbolName(Symbol symbol) {
+String _getSymbolName(Symbol symbol) {
   final str = RegExp("(\".+\")").firstMatch(symbol.toString()).group(1);
   return str.substring(1, str.length - 1);
 }
@@ -27,7 +36,7 @@ abstract class ApiService {
     final body = {};
     invocation.namedArguments.forEach((key, value) {
       if (!(key == METHOD || key == URL || key == HEADERS)) {
-        body[getSymbolName(key)] = value;
+        body[_getSymbolName(key)] = value;
       }
     });
 

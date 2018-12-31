@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 
 class LoadingDialog extends StatelessWidget {
+
   final String message;
   final WillPopCallback popCallback;
 

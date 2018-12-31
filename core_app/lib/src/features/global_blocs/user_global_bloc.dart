@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:core_app/core_app.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
+import 'package:core_app/src/modules/api_service.dart';
 import 'package:core_app/src/modules/validator.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -56,6 +57,7 @@ class UserGlobalBloc implements Bloc {
         (user) {
           print(user);
           _userSubject.add(user);
+          updateHeaders(_createHeaders(user));
         },
         onError: (error) {
           print(error);
@@ -130,6 +132,7 @@ class UserGlobalBloc implements Bloc {
           .listen(
         (user) {
           _userSubject.add(user);
+          updateHeaders(_createHeaders(user));
         },
         onError: (error) {
           print(error);
@@ -152,6 +155,13 @@ class UserGlobalBloc implements Bloc {
     print("Cancel");
     _request.cancel();
     return true;
+  }
+
+  Map<String, String> _createHeaders(User user) {
+    return {
+      "access_token": user.accessToken,
+      "user_id": user.id.toString(),
+    };
   }
 
   @override

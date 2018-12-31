@@ -6,13 +6,14 @@ const TASK_URL = "$HOST/api/task";
 class TaskApiService extends ApiService {
   Future<Response> getTasks({
     method = GET,
-    url = TASK_URL,
-    int page,
+    String url,
+    Map<String, String> headers,
   });
 
   Future<Response> createTask({
     method = POST,
     url = TASK_URL,
+    Map<String, String> headers,
     String title,
     String description,
   });
@@ -20,6 +21,7 @@ class TaskApiService extends ApiService {
   Future<Response> updateTask({
     method = PUT,
     url = TASK_URL,
+    Map<String, String> headers,
     String title,
     String description,
   });
@@ -27,6 +29,7 @@ class TaskApiService extends ApiService {
   Future<Response> deleteTask({
     method = DELETE,
     url = TASK_URL,
+    Map<String, String> headers,
     int id,
   });
 }

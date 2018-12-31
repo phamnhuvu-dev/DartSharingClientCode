@@ -21,8 +21,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen>
-    with ScrollableContentCenter {
-  
+    with ScrollableContentCenterHelper {
+
   TextEditingController usernameController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -39,11 +39,6 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   Widget body() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (value) {
-        executeCalculateCenter(this);
-      },
-    );
 
     streamSubscription = widget.userGlobalBloc.user.listen(
       (user) {
@@ -54,7 +49,9 @@ class _RegisterScreenState extends State<RegisterScreen>
     );
     return SingleChildScrollView(
       key: bodyKey,
-      child: scrollableContentCenter(
+      child: ScrollableContentCenter(
+        bodyKey: bodyKey,
+        contentKey: contentKey,
         padding: EdgeInsets.only(
           left: 30.0,
           right: 30.0,

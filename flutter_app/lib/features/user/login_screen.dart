@@ -2,13 +2,12 @@ import 'dart:async';
 
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
-import 'package:core_app/src/features/bloc_provider.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
 import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
-import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
-import 'package:flutter_app/widgets/oval_head_card.dart';
 import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
+import 'package:flutter_app/widgets/oval_head_card.dart';
+import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,7 +23,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen>
-    with ScrollableContentCenter {
+    with ScrollableContentCenterHelper {
+
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   StreamSubscription<User> streamSubscription;
@@ -37,12 +37,6 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget body() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (value) {
-        executeCalculateCenter(this);
-      },
-    );
-
     streamSubscription = widget.userGlobalBloc.user.listen(
       (user) {
         streamSubscription.cancel();
@@ -53,7 +47,9 @@ class _LoginScreenState extends State<LoginScreen>
 
     return SingleChildScrollView(
       key: bodyKey,
-      child: scrollableContentCenter(
+      child: ScrollableContentCenter(
+        bodyKey: bodyKey,
+        contentKey: contentKey,
         padding: EdgeInsets.only(
           left: 30.0,
           right: 30.0,
@@ -76,15 +72,16 @@ class _LoginScreenState extends State<LoginScreen>
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
                       onTap: () {
-                        LoadingDialog.show(
-                          context: context,
-                          message: "Waiting",
-                          popCallback: widget.userGlobalBloc.cancelRequest,
-                        );
-                        widget.userGlobalBloc.checkValidLogin(
-                          account: accountController.text,
-                          password: passwordController.text,
-                        );
+                        print(ScrollableContentCenter.of(context));
+//                        LoadingDialog.show(
+//                          context: context,
+//                          message: "Waiting",
+//                          popCallback: widget.userGlobalBloc.cancelRequest,
+//                        );
+//                        widget.userGlobalBloc.checkValidLogin(
+//                          account: accountController.text,
+//                          password: passwordController.text,
+//                        );
                       },
                     ),
                   ),

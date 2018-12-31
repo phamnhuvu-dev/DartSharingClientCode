@@ -5,6 +5,11 @@ import 'package:flutter_app/widgets/buttons/add_button.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 
 class MainScreen extends StatefulWidget {
+
+  final TaskListScreen taskListScreen;
+
+  const MainScreen({Key key, this.taskListScreen}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _MainScreenState();
 }
@@ -22,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(bottom: 64.0 / 2),
-          child: TaskListScreen(),
+          child: widget.taskListScreen,
         ),
         addButton(),
         bottomBar(),

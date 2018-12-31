@@ -1,8 +1,13 @@
+import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 
 class TaskListScreen extends StatefulWidget {
+  final TaskGlobalBloc taskGlobalBloc;
+
+  const TaskListScreen({Key key, this.taskGlobalBloc}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _TaskListScreenState();
 }
@@ -16,13 +21,30 @@ class _TaskListScreenState extends State<TaskListScreen> {
   }
 
   Widget body() {
-    return ListView.builder(
-      itemCount: 50,
-      padding: EdgeInsets.only(left: 24.0, right: 24.0),
-      itemBuilder: (BuildContext context, int index) {
-        return ItemTask(
-          isLast: index == 50 - 1,
-        );
+    return StreamBuilder(
+      stream: widget.taskGlobalBloc.tasks,
+      builder: (context, AsyncSnapshot<List<Task>> snapshot) {
+        print(snapshot.data);
+        if (snapshot.connectionState != ConnectionState.none &&
+            snapshot.data != null) {
+          final List<Task> tasks = snapshot.data;
+          if (tasks.length == 0) {
+            widget.taskGlobalBloc.loadTasks();
+          }
+
+          return ListView.builder(
+            itemCount: tasks.length,
+            padding: EdgeInsets.only(left: 24.0, right: 24.0),
+            itemBuilder: (BuildContext context, int index) {
+              return ItemTask(
+                isLast: index == 50 - 1,
+                task: tasks[index],
+              );
+            },
+          );
+        } else {
+          return Placeholder();
+        }
       },
     );
   }
@@ -31,8 +53,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
 class ItemTask extends StatelessWidget {
   final double bottom;
   final bool isLast;
+  final Task task;
 
-  const ItemTask({Key key, this.bottom, this.isLast}) : super(key: key);
+  const ItemTask({Key key, this.bottom, this.isLast, this.task})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +66,7 @@ class ItemTask extends StatelessWidget {
         left: 10.0,
         right: 10.0,
       ),
-      margin: EdgeInsets.only(bottom: isLast ? (64 + 46)/2 : 15.0),
+      margin: EdgeInsets.only(bottom: isLast ? (64 + 46) / 2 : 15.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(35.0),
@@ -78,7 +102,7 @@ class ItemTask extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "Title",
+                              task.title,
                               style: TextStyle(
                                 color: AppColors.dodger_blue,
                                 fontWeight: FontWeight.bold,
@@ -86,7 +110,7 @@ class ItemTask extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "Description - Lorem ipsum dolor sit amet, scripta tibique usu ei Lorem ipsum dolor sit amet…",
+                              task.description,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(fontSize: 13.0),

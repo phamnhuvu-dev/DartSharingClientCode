@@ -16,6 +16,7 @@ class UserRepositoryService extends UserRepository {
     Map json = jsonDecode(response.body);
     final userJson = json["user"];
     final user = User.fromJson(userJson);
+    user.accessToken = json["access_token"];
     return user;
   }
 
