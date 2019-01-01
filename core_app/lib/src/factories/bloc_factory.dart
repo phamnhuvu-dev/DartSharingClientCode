@@ -10,31 +10,35 @@ import 'package:flutter/material.dart';
 import 'package:core_app/src/features/bloc_provider.dart';
 
 class BlocFactory {
-  static B create<B extends Bloc>({BuildContext context}) {
+  static FlutterGlobalBloc _flutterGlobalBloc;
+  static UserGlobalBloc _userGlobalBloc;
+  static TaskGlobalBloc _taskGlobalBloc;
+
+  static B create<B extends Bloc>() {
     switch (B) {
       case FlutterGlobalBloc:
-        final flutterGlobalBloc = BlocProvider.of<FlutterGlobalBloc>(context);
-        return (flutterGlobalBloc == null
-            ? FlutterGlobalBloc()
-            : flutterGlobalBloc as B);
+        if (_flutterGlobalBloc == null || _flutterGlobalBloc.isClose()) {
+          _flutterGlobalBloc = FlutterGlobalBloc();
+        }
+        return _flutterGlobalBloc as B;
 
       case UserGlobalBloc:
-        final userGlobalBloc = BlocProvider.of<UserGlobalBloc>(context);
-        return (userGlobalBloc == null
-            ? UserGlobalBloc(
-                userRepository:
-                    RepositoryFactory.create<UserRepositoryService>(),
-                validator: Validator(),
-              )
-            : userGlobalBloc) as B;
+        if (_userGlobalBloc == null || _userGlobalBloc.isClose()) {
+          _userGlobalBloc = UserGlobalBloc(
+            userRepository: RepositoryFactory.create<UserRepositoryService>(),
+            validator: Validator(),
+          );
+        }
+        return _userGlobalBloc as B;
 
       case TaskGlobalBloc:
-        final taskGlobalBloc = BlocProvider.of<TaskGlobalBloc>(context);
-        return (taskGlobalBloc == null
-            ? TaskGlobalBloc(
-                RepositoryFactory.create<TaskRepositoryService>(context: context),
-              )
-            : taskGlobalBloc) as B;
+        if (_taskGlobalBloc == null || _taskGlobalBloc.isClose()) {
+          _taskGlobalBloc = TaskGlobalBloc(
+            RepositoryFactory.create<TaskRepositoryService>(),
+          );
+        }
+        return _taskGlobalBloc as B;
+
       default:
         return null;
     }

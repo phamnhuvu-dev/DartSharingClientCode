@@ -14,17 +14,16 @@ class TaskRepositoryService extends TaskRepository {
   @override
   Future<List<Task>> get(Map<String, dynamic> by) async {
     final int page = by["page"];
-    print("$TASK_URL?page=$page");
-    print(appHeaders);
-    final Response response =
-        await apiService.getTasks(url: "$TASK_URL?page=$page", headers: appHeaders);
+    final Response response = await apiService.getTasks(
+        url: "$TASK_URL?page=$page", headers: appHeaders);
 
     Map json = jsonDecode(response.body);
     print(json);
 
     if (json.containsKey("tasks")) {
       Iterable jsonTasks = json["tasks"];
-      List<Task> tasks = jsonTasks.map((model)=> Task.fromJson(model)).toList();
+      List<Task> tasks =
+          jsonTasks.map((model) => Task.fromJson(model)).toList();
       return tasks;
     } else {
       return List();
@@ -32,9 +31,16 @@ class TaskRepositoryService extends TaskRepository {
   }
 
   @override
-  Future<Task> insert(Task item) {
-    // TODO: implement insert
-    return null;
+  Future<Task> insert(Task item) async {
+    final Response response = await apiService.createTask(
+      headers: appHeaders,
+      title: item.title,
+      description: item.description,
+    );
+
+    Map json = jsonDecode(response.body);
+
+    return Task.fromJson(json["task"]);
   }
 
   @override

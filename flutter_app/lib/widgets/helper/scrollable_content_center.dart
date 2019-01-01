@@ -17,7 +17,7 @@ class ScrollableContentCenter extends StatefulWidget {
     @required this.child,
     @required this.bodyKey,
     @required this.contentKey,
-    this.padding,
+    this.padding = const EdgeInsets.all(0.0),
   }) : super(key: key);
 
   static _ScrollableContentCenter of(BuildContext context) {

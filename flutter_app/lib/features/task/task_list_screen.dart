@@ -1,5 +1,6 @@
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/main_screen.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 
@@ -23,13 +24,18 @@ class _TaskListScreenState extends State<TaskListScreen> {
   Widget body() {
     return StreamBuilder(
       stream: widget.taskGlobalBloc.tasks,
-      builder: (context, AsyncSnapshot<List<Task>> snapshot) {
+      builder: (context, AsyncSnapshot<Tuple2<List<Task>, int>> snapshot) {
         print(snapshot.data);
         if (snapshot.connectionState != ConnectionState.none &&
             snapshot.data != null) {
-          final List<Task> tasks = snapshot.data;
-          if (tasks.length == 0) {
+          final List<Task> tasks = snapshot.data.item1;
+          if (tasks.length == 0 && snapshot.connectionState == ConnectionState.active) {
             widget.taskGlobalBloc.loadTasks();
+          }
+
+          if (MainScreen.of(context).isShowingDialog && snapshot.data.item2 == 1) {
+            Future(() => Navigator.pop(context));
+            MainScreen.of(context).isShowingDialog = false;
           }
 
           return ListView.builder(
@@ -48,6 +54,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
       },
     );
   }
+
 }
 
 class ItemTask extends StatelessWidget {

@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                       LoadingDialog.show(
                         context: context,
                         message: "Waiting",
-                        popCallback: widget.userGlobalBloc.cancelRequest,
+                        onWillPop: widget.userGlobalBloc.cancelRequest,
                       );
 
                       widget.userGlobalBloc.checkValidRegister(

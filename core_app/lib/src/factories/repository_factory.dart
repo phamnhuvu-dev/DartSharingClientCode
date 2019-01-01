@@ -5,7 +5,7 @@ import 'package:core_app/src/data/repositories/user/user_repository_service.dart
 import 'package:flutter/material.dart';
 
 class RepositoryFactory {
-  static R create<R>({BuildContext context}) {
+  static R create<R>() {
     switch (R) {
       case UserRepositoryService:
         return UserRepositoryService(UserApiService()) as R;

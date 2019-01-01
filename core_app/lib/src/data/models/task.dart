@@ -4,7 +4,7 @@ class Task {
   String description;
 
 
-  Task(this.id, this.title, this.description);
+  Task({this.id, this.title, this.description});
 
   Task.fromJson(Map<String, dynamic> json)
       : id = json["id"],

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 
 class LoadingDialog extends StatelessWidget {
-
   final String message;
-  final WillPopCallback popCallback;
+  final WillPopCallback onWillPop;
 
   const LoadingDialog({
     Key key,
     this.message = '',
-    this.popCallback,
+    this.onWillPop,
   }) : super(key: key);
 
   @override
@@ -33,18 +32,22 @@ class LoadingDialog extends StatelessWidget {
           ),
         ),
       ),
-      onWillPop: popCallback,
+      onWillPop: onWillPop,
     );
   }
 
-  static show({BuildContext context, String message, WillPopCallback popCallback}) {
+  static show(
+      {BuildContext context, String message, WillPopCallback onWillPop}) {
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (builder) {
-        return LoadingDialog(
-          message: "Waiting",
-          popCallback: popCallback,
+        return Theme(
+          data: ThemeData(dialogBackgroundColor: Colors.white),
+          child: LoadingDialog(
+            message: message,
+            onWillPop: onWillPop,
+          ),
         );
       },
     );

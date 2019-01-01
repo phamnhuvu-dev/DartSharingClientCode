@@ -7,6 +7,11 @@ import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 
 class BottomBar extends StatelessWidget {
+
+  final List<Widget> children;
+
+  const BottomBar({Key key, this.children = const <Widget>[]}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double height = 64.0;
@@ -26,15 +31,12 @@ class BottomBar extends StatelessWidget {
         ),
         Padding(
           padding:
-              EdgeInsets.only(left: 16.0, right: 16.0, bottom: paddingBottom),
+              EdgeInsets.only(bottom: paddingBottom),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(Icons.account_circle),
-              Icon(Icons.more_vert),
-            ],
+            children: children,
           ),
         )
       ],

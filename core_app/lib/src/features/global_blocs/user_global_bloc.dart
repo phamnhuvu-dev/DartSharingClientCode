@@ -1,15 +1,18 @@
 import 'dart:async';
 
-import 'package:core_app/core_app.dart';
+import 'package:async/async.dart';
+import 'package:core_app/src/data/models/user.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
+import 'package:core_app/src/features/bloc.dart';
 import 'package:core_app/src/modules/api_service.dart';
 import 'package:core_app/src/modules/validator.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:tuple/tuple.dart';
 
 class UserGlobalBloc implements Bloc {
   final UserRepository userRepository;
   final Validator validator;
-  StreamSubscription<User> _request;
+  CancelableOperation<User> cancelableOperation;
 
   BehaviorSubject<User> _userSubject;
 
@@ -46,23 +49,36 @@ class UserGlobalBloc implements Bloc {
     }
 
     if (messageAccount.isEmpty && messagePassword.isEmpty) {
-      _request = userRepository
-          .login(
-            account: account,
-            password: password,
-            is_email: validator.validEmail(account).toString(),
-          )
-          .asStream()
-          .listen(
-        (user) {
-          print(user);
-          _userSubject.add(user);
-          updateHeaders(_createHeaders(user));
-        },
-        onError: (error) {
-          print(error);
-        },
+      cancelableOperation = CancelableOperation.fromFuture(
+        userRepository.login(
+          account: account,
+          password: password,
+          is_email: validator.validEmail(account).toString(),
+        ),
       );
+      cancelableOperation.value.then((user) {
+        _userSubject.add(user);
+        updateHeaders(_createHeaders(user));
+      }).catchError((error) {
+        print(error);
+      });
+//      _request = userRepository
+//          .login(
+//            account: account,
+//            password: password,
+//            is_email: validator.validEmail(account).toString(),
+//          )
+//          .asStream()
+//          .listen(
+//        (user) {
+//          print(user);
+//          _userSubject.add(user);
+//          updateHeaders(_createHeaders(user));
+//        },
+//        onError: (error) {
+//          print(error);
+//        },
+//      );
     } else {
       _validLoginSubject.add(
         Tuple2(
@@ -121,23 +137,19 @@ class UserGlobalBloc implements Bloc {
         messageEmail.isEmpty &&
         messagePassword.isEmpty &&
         messageConfirmPassword.isEmpty) {
-      _request = userRepository
+      cancelableOperation = CancelableOperation.fromFuture(userRepository
           .register(
-            username: username,
-            account_name: accountName,
-            email: email,
-            password: password,
-          )
-          .asStream()
-          .listen(
-        (user) {
-          _userSubject.add(user);
-          updateHeaders(_createHeaders(user));
-        },
-        onError: (error) {
-          print(error);
-        },
-      );
+        username: username,
+        account_name: accountName,
+        email: email,
+        password: password,
+      ));
+      cancelableOperation.value.then((user) {
+        _userSubject.add(user);
+        updateHeaders(_createHeaders(user));
+      }).catchError((error) {
+        print(error);
+      });
     } else {
       _validRegisterSubject.add(
         Tuple5(
@@ -153,7 +165,7 @@ class UserGlobalBloc implements Bloc {
 
   Future<bool> cancelRequest() async {
     print("Cancel");
-    _request.cancel();
+    cancelableOperation.cancel();
     return true;
   }
 
@@ -167,5 +179,10 @@ class UserGlobalBloc implements Bloc {
   @override
   void dispose() {
     _userSubject.close();
+  }
+
+  @override
+  bool isClose() {
+    return _userSubject.isClosed;
   }
 }
