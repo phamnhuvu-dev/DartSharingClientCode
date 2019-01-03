@@ -6,8 +6,9 @@ import 'package:flutter_app/features/main/task/task_item.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/widgets/buttons/add_button.dart';
 import 'package:flutter_app/widgets/delete_bar.dart';
-import 'package:flutter_app/widgets/dialogs/create_task_dialog.dart';
-import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
+import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
+import 'package:flutter_app/widgets/dialogs/create_task.dart';
+import 'package:flutter_app/widgets/dialogs/loading.dart';
 import 'package:flutter_app/widgets/search_bar.dart';
 
 class TaskListScreen extends StatefulWidget {
@@ -33,7 +34,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
     taskGlobalBloc = widget.taskGlobalBloc;
     taskGlobalBloc.loading.listen((isLoading) {
       if (!isLoading && context != null) {
-        LoadingDialog.close(context);
+        print("----------------");
+        AppDialog.close(context);
       }
     });
 
@@ -80,7 +82,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
                 return DeleteBar(
                   onTapCancel: taskGlobalBloc.turnOffDeleteMode,
                   onTapDelete: () {
-                    LoadingDialog.show(context: context, message: "Deleting tasks");
+                    AppDialog.show(
+                      context: context,
+                      child: Loading(
+                        message: "Deleting tasks",
+                      ),
+                    );
                     taskGlobalBloc.deleteTask();
                   },
                 );
@@ -157,14 +164,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
       bottom: paddingBottom,
       child: AddButton(
         onTap: () {
-          print("Show Create Dialog");
-          CreateTaskDialog.show(
-            taskListScreenState: this,
+          AppDialog.show(
             context: context,
-            taskGlobalBloc: widget.taskGlobalBloc,
-            onWillPop: () {
-              return Future.value(true);
-            },
+            child: CreateTask(
+              taskGlobalBloc: taskGlobalBloc,
+            ),
+            backgroundColor: Colors.transparent,
           );
         },
       ),

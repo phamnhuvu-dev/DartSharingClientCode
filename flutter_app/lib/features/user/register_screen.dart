@@ -1,13 +1,14 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:core_app/core_app.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
-import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
-import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
-import 'package:flutter_app/widgets/oval_head_card.dart';
+import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
+import 'package:flutter_app/widgets/dialogs/loading.dart';
 import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
+import 'package:flutter_app/widgets/oval_head_card.dart';
+import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -22,7 +23,6 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen>
     with ScrollableContentCenterHelper {
-
   TextEditingController usernameController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -39,7 +39,6 @@ class _RegisterScreenState extends State<RegisterScreen>
   }
 
   Widget body() {
-
     streamSubscription = widget.userGlobalBloc.user.listen(
       (user) {
         streamSubscription.cancel();
@@ -69,9 +68,11 @@ class _RegisterScreenState extends State<RegisterScreen>
                     text: "Register",
                     theme: DodgerBlueButtonTheme(),
                     onTap: () {
-                      LoadingDialog.show(
+                      AppDialog.show(
                         context: context,
-                        message: "Waiting",
+                        child: Loading(
+                          message: "Registering",
+                        ),
                         onWillPop: widget.userGlobalBloc.cancelRequest,
                       );
 

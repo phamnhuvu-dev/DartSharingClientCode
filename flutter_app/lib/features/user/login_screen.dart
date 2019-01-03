@@ -4,7 +4,8 @@ import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
-import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
+import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
+import 'package:flutter_app/widgets/dialogs/loading.dart';
 import 'package:flutter_app/widgets/helper/scrollable_content_center.dart';
 import 'package:flutter_app/widgets/oval_head_card.dart';
 import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
@@ -34,10 +35,9 @@ class _LoginScreenState extends State<LoginScreen>
     streamSubscription = widget.userGlobalBloc.user.listen(
       (user) {
         streamSubscription.cancel();
-        if (Navigator.pop(context)) {
-          Navigator.of(context)
-              .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
-        }
+        AppDialog.close(context);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            "/main", (Route<dynamic> route) => false);
       },
     );
   }
@@ -77,11 +77,18 @@ class _LoginScreenState extends State<LoginScreen>
                       text: "Login",
                       theme: DodgerBlueButtonTheme(),
                       onTap: () {
-                        LoadingDialog.show(
+                        AppDialog.show(
                           context: context,
-                          message: "Waiting",
+                          child: Loading(
+                            message: "Logining",
+                          ),
                           onWillPop: widget.userGlobalBloc.cancelRequest,
                         );
+//                        LoadingDialog.show(
+//                          context: context,
+//                          message: "Waiting",
+//                          onWillPop: widget.userGlobalBloc.cancelRequest,
+//                        );
                         widget.userGlobalBloc.checkValidLogin(
                           account: accountController.text,
                           password: passwordController.text,
