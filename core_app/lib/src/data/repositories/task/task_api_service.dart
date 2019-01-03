@@ -28,8 +28,7 @@ class TaskApiService extends ApiService {
 
   Future<Response> deleteTask({
     method = DELETE,
-    url = TASK_URL,
+    String url,
     Map<String, String> headers,
-    int id,
   });
 }

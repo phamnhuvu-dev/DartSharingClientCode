@@ -4,7 +4,6 @@ Map<String, String> appHeaders = Map();
 
 void updateHeaders(Map<String, String> newHeaders) {
   print("update");
-  print(newHeaders);
   appHeaders = newHeaders;
   print(appHeaders);
 }

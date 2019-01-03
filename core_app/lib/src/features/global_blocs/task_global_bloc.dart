@@ -2,67 +2,135 @@ import 'package:core_app/src/data/models/task.dart';
 import 'package:core_app/src/data/repositories/task/task_repository.dart';
 import 'package:core_app/src/features/bloc.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:tuple/tuple.dart';
-
 
 class TaskGlobalBloc implements Bloc {
-  bool _isLoading = false;
-
   TaskGlobalBloc(this.taskRepository);
 
   final TaskRepository taskRepository;
 
   int _currentPage = 0;
 
-  BehaviorSubject<Tuple2<List<Task>, int>> _tasksSubject =
-      BehaviorSubject(seedValue: Tuple2(List(), 0));
+  ///////////// DELETE MODE SUBJECT //////////////
+  BehaviorSubject<bool> _deleteModeSubject = BehaviorSubject(seedValue: false);
 
-  BehaviorSubject<Task> _taskSubject = BehaviorSubject();
+  Stream<bool> get deleteMode => _deleteModeSubject.stream;
 
-  Stream<Tuple2<List<Task>, int>> get tasks => _tasksSubject.stream;
+  bool get isDeleteMode => _deleteModeSubject.value;
 
-  Stream<Task> get task => _taskSubject.stream;
+  void turnOnDeleteMode() async {
+    _deleteModeSubject.add(true);
+  }
 
-  void loadTasks() async {
+  void turnOffDeleteMode() async {
+    _deleteModeSubject.add(false);
+    _tasksSubject.value.forEach((task) => task.isDeleteSelect = false);
+  }
+
+  ///////////// LOADING SUBJECT ////////////////////
+  bool _isLoading = false;
+  Stream<bool> get loading => _loadingSubject.stream;
+
+  PublishSubject<bool> _loadingSubject = PublishSubject();
+
+  void _loading() {
+    print(_isLoading);
     if (_isLoading) return;
     _isLoading = true;
+    _loadingSubject.add(_isLoading);
+  }
+
+  void _loaded() {
+    _isLoading = false;
+    _loadingSubject.add(_isLoading);
+  }
+
+  ////////////// TASK LIST SUBJECT //////////////////
+  BehaviorSubject<List<Task>> _tasksSubject =
+      BehaviorSubject(seedValue: List());
+
+  Stream<List<Task>> get tasks => _tasksSubject.stream;
+  int get taskCount => _tasksSubject.value.length;
+
+  void loadTasks() async {
+    _loading();
 
     _currentPage += 1;
-    taskRepository.get({"page": _currentPage}).then((tasks) {
-      final currentTube = _tasksSubject.value;
-      currentTube.item1.addAll(tasks);
-      _tasksSubject.add(currentTube);
-      _isLoading = false;
+    taskRepository.get({taskRepository.PAGE_KEY: _currentPage}).then((tasks) {
+      final currentTask = _tasksSubject.value;
+      currentTask.addAll(tasks);
+      _tasksSubject.add(currentTask);
+      _loaded();
     }).catchError((error) {
       print(error);
       _currentPage -= 1;
-      _isLoading = false;
+      _loaded();
     });
   }
 
   void createTask(Task task) async {
-    if (_isLoading) return;
-    _isLoading = true;
+    _loading();
 
     taskRepository.insert(task).then((task) {
-      final currentTasks = _tasksSubject.value.item1;
+      final currentTasks = _tasksSubject.value;
       currentTasks.add(task);
-      _tasksSubject.add(Tuple2(currentTasks, 1));
-      _isLoading = false;
+      _tasksSubject.add(currentTasks);
+      _loaded();
     }).catchError((error) {
       print(error);
-      _isLoading = false;
+      _loaded();
     });
   }
 
-  void deleteTask(Task task) async {}
+  PublishSubject<bool> deleteSubject = PublishSubject();
 
-  void openTask() {}
+  Stream<bool> get delete => deleteSubject.stream;
 
+  void deleteTask() async {
+    _loading();
+
+    final deleteTasks = _tasksSubject.value
+        .where(
+          (task) => task.isDeleteSelect,
+        )
+        .toList();
+
+    taskRepository.delete(items: deleteTasks).then((map) async {
+      print(map);
+      map[taskRepository.DELETED_IDS_KEY].forEach(
+        (id) => _tasksSubject.value.removeWhere((task) => (id as int) == task.id),
+      );
+      _tasksSubject.add(_tasksSubject.value);
+
+      final isSuccess =
+          deleteTasks.length == map[taskRepository.DELETED_IDS_KEY].length;
+      deleteSubject.add(isSuccess);
+      _loaded();
+    }).catchError((error) {
+      print(error);
+      _loaded();
+    });
+  }
+
+  ////////////////// TASK SELECT ///////////////
+  Task selectedTask;
+
+//
+//  BehaviorSubject<Task> _taskSubject = BehaviorSubject();
+//
+//  Stream<Task> get task => _taskSubject.stream;
+
+  void selectTask(Task task) {
+    selectedTask = task;
+  }
+
+  //////////////// OTHERS ///////////////
   @override
   void dispose() {
     print("Task dispose");
     _tasksSubject.close();
+    _loadingSubject.close();
+//    _taskSubject.close();
+    _deleteModeSubject.close();
   }
 
   @override

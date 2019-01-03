@@ -5,7 +5,9 @@ class WhiteScaffold extends StatelessWidget {
   final Widget child;
   final bool resizeToAvoidBottomPadding;
 
-  const WhiteScaffold({Key key, this.child, this.resizeToAvoidBottomPadding = true}) : super(key: key);
+  const WhiteScaffold(
+      {Key key, this.child, this.resizeToAvoidBottomPadding = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +15,14 @@ class WhiteScaffold extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         color: AppColors.white,
         child: SafeArea(
           bottom: false,

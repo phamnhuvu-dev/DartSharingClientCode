@@ -62,23 +62,6 @@ class UserGlobalBloc implements Bloc {
       }).catchError((error) {
         print(error);
       });
-//      _request = userRepository
-//          .login(
-//            account: account,
-//            password: password,
-//            is_email: validator.validEmail(account).toString(),
-//          )
-//          .asStream()
-//          .listen(
-//        (user) {
-//          print(user);
-//          _userSubject.add(user);
-//          updateHeaders(_createHeaders(user));
-//        },
-//        onError: (error) {
-//          print(error);
-//        },
-//      );
     } else {
       _validLoginSubject.add(
         Tuple2(

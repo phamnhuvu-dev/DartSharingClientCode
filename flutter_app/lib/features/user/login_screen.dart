@@ -24,10 +24,23 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen>
     with ScrollableContentCenterHelper {
-
   TextEditingController accountController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   StreamSubscription<User> streamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    streamSubscription = widget.userGlobalBloc.user.listen(
+      (user) {
+        streamSubscription.cancel();
+        if (Navigator.pop(context)) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +50,6 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget body() {
-    streamSubscription = widget.userGlobalBloc.user.listen(
-      (user) {
-        streamSubscription.cancel();
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
-      },
-    );
-
     return SingleChildScrollView(
       key: bodyKey,
       child: ScrollableContentCenter(

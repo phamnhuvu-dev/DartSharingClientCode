@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class DeviceInfo extends InheritedWidget {
   final bool isIPhoneX;
+  final double edgeHeight = 34.0;
+  final double bottomBarHeight = 64.0;
 
   const DeviceInfo({
     Key key,

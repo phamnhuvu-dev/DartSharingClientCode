@@ -1,11 +1,14 @@
 import 'package:core_app/src/factories/bloc_factory.dart';
+import 'package:core_app/src/features/global_blocs/task_global_bloc.dart';
+import 'package:core_app/src/features/global_blocs/user_global_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/task/task_list_screen.dart';
+import 'package:flutter_app/features/main/task/task_detail_screen.dart';
+import 'package:flutter_app/features/main/task/task_list_screen.dart';
 import 'package:flutter_app/features/user/login_screen.dart';
-import 'package:flutter_app/features/main_screen.dart';
+import 'package:flutter_app/features/main/main_screen.dart';
 import 'package:flutter_app/features/user/register_screen.dart';
 import 'package:flutter_app/features/splash_creen.dart';
-import 'package:core_app/core_app.dart';
+import 'package:flutter_app/features/main/about/about_screen.dart';
 
 class ScreenFactory {
   static W create<W extends Widget>({BuildContext context}) {
@@ -32,6 +35,14 @@ class ScreenFactory {
         return TaskListScreen(
           taskGlobalBloc: BlocFactory.create<TaskGlobalBloc>(),
         ) as W;
+
+      case TaskDetailScreen:
+        return TaskDetailScreen(
+          taskGlobalBloc: BlocFactory.create<TaskGlobalBloc>(),
+        ) as W;
+
+      case AboutScreen:
+        return AboutScreen() as W;
 
       default:
         return null;

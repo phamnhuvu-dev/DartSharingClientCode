@@ -40,10 +40,9 @@ class UserRepositoryService extends UserRepository {
     return null;
   }
 
-
   @override
-  Future<String> update(User item) {
-    // TODO: implement update
+  Future<Map<String, dynamic>> delete({List<User> items}) {
+    // TODO: implement delete
     return null;
   }
 
@@ -54,8 +53,8 @@ class UserRepositoryService extends UserRepository {
   }
 
   @override
-  Future<List<String>> delete({List<User> items}) {
-    // TODO: implement delete
+  Future<Map<String, dynamic>> update(User item) {
+    // TODO: implement update
     return null;
   }
 }

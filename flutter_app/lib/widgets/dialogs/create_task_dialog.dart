@@ -1,6 +1,7 @@
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/main_screen.dart';
+import 'package:flutter_app/features/main/main_screen.dart';
+import 'package:flutter_app/features/main/task/task_list_screen.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
 import 'package:flutter_app/widgets/dialogs/loading_dialog.dart';
@@ -10,18 +11,18 @@ import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 class CreateTaskDialog extends StatefulWidget {
   final TaskGlobalBloc taskGlobalBloc;
   final WillPopCallback onWillPop;
-  final State<MainScreen> mainScreenState;
+  final State<TaskListScreen> taskListScreenState;
 
   const CreateTaskDialog(
       {Key key,
       @required this.taskGlobalBloc,
       this.onWillPop,
-      this.mainScreenState})
+      this.taskListScreenState})
       : super(key: key);
 
   static void show({
     BuildContext context,
-    State<MainScreen> mainScreenState,
+    State<TaskListScreen> taskListScreenState,
     @required TaskGlobalBloc taskGlobalBloc,
     WillPopCallback onWillPop,
   }) {
@@ -34,7 +35,7 @@ class CreateTaskDialog extends StatefulWidget {
             dialogBackgroundColor: Colors.transparent,
           ),
           child: CreateTaskDialog(
-            mainScreenState: mainScreenState,
+            taskListScreenState: taskListScreenState,
             taskGlobalBloc: taskGlobalBloc,
             onWillPop: onWillPop,
           ),
@@ -43,13 +44,28 @@ class CreateTaskDialog extends StatefulWidget {
     );
   }
 
+  static void close(BuildContext context) {
+    if (_CreateTaskDialogState.isShowing) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
-  State<StatefulWidget> createState() => _CreateTaskDialog();
+  State<StatefulWidget> createState() => _CreateTaskDialogState();
 }
 
-class _CreateTaskDialog extends State<CreateTaskDialog> {
+class _CreateTaskDialogState extends State<CreateTaskDialog> {
+
+  static bool isShowing;
+
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    isShowing = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +101,8 @@ class _CreateTaskDialog extends State<CreateTaskDialog> {
                               description: descriptionController.text,
                             ),
                           );
-                          Navigator.pop(context);
-                          MainScreen.cast(widget.mainScreenState).isShowingDialog = true;
-                          LoadingDialog.show(
-                              context: context, message: "Creating Task");
+                          CreateTaskDialog.close(context);
+                          LoadingDialog.show(context: context, message: "Creating Dialog");
                         },
                       ),
                     ),
@@ -97,7 +111,7 @@ class _CreateTaskDialog extends State<CreateTaskDialog> {
                         text: "Cancel",
                         theme: MalibuButtonTheme(),
                         onTap: () {
-                          Navigator.pop(context);
+                          CreateTaskDialog.close(context);
                         },
                       ),
                     ),
@@ -109,5 +123,11 @@ class _CreateTaskDialog extends State<CreateTaskDialog> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    isShowing = false;
+    super.dispose();
   }
 }
