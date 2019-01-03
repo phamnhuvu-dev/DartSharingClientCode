@@ -71,7 +71,7 @@ class TaskRepositoryService extends TaskRepository {
   }
 
   @override
-  Future<Map<String, dynamic>> update(Task item) async {
+  Future<Map<String, dynamic>> update(List<Task> items) async {
     return null;
   }
 }

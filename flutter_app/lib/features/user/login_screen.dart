@@ -84,11 +84,6 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                           onWillPop: widget.userGlobalBloc.cancelRequest,
                         );
-//                        LoadingDialog.show(
-//                          context: context,
-//                          message: "Waiting",
-//                          onWillPop: widget.userGlobalBloc.cancelRequest,
-//                        );
                         widget.userGlobalBloc.checkValidLogin(
                           account: accountController.text,
                           password: passwordController.text,

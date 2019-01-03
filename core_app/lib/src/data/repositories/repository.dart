@@ -7,7 +7,7 @@ abstract class Repository<R> {
 
   Future<R> insert(R item);
 
-  Future<Map<String, dynamic>> update(R item);
+  Future<Map<String, dynamic>> update(List<R> items);
 
   Future<Map<String, dynamic>> delete({List<R> items});
 }

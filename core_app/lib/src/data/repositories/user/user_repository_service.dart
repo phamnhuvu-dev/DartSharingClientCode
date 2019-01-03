@@ -53,7 +53,7 @@ class UserRepositoryService extends UserRepository {
   }
 
   @override
-  Future<Map<String, dynamic>> update(User item) {
+  Future<Map<String, dynamic>> update(List<User> items) {
     // TODO: implement update
     return null;
   }
