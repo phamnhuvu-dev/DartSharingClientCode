@@ -1,5 +1,6 @@
 import 'package:core_app/src/data/models/task.dart';
 import 'package:core_app/src/data/repositories/task/task_repository.dart';
+import 'package:core_app/src/data/repositories/task/task_request.dart';
 import 'package:core_app/src/features/bloc.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -28,6 +29,7 @@ class TaskGlobalBloc implements Bloc {
 
   ///////////// LOADING SUBJECT ////////////////////
   bool _isLoading = false;
+
   Stream<bool> get loading => _loadingSubject.stream;
 
   PublishSubject<bool> _loadingSubject = PublishSubject();
@@ -49,15 +51,16 @@ class TaskGlobalBloc implements Bloc {
       BehaviorSubject(seedValue: List());
 
   Stream<List<Task>> get tasks => _tasksSubject.stream;
+
   int get taskCount => _tasksSubject.value.length;
 
   void loadTasks() async {
     _loading();
 
     _currentPage += 1;
-    taskRepository.get({taskRepository.PAGE_KEY: _currentPage}).then((tasks) {
+    taskRepository.get(TaskRequest(page: _currentPage)).then((response) {
       final currentTask = _tasksSubject.value;
-      currentTask.addAll(tasks);
+      currentTask.addAll(response.tasks);
       _tasksSubject.add(currentTask);
       _loaded();
     }).catchError((error) {
@@ -70,9 +73,9 @@ class TaskGlobalBloc implements Bloc {
   void createTask(Task task) async {
     _loading();
 
-    taskRepository.insert(task).then((task) {
+    taskRepository.insert(TaskRequest(tasks: [task])).then((response) {
       final currentTasks = _tasksSubject.value;
-      currentTasks.add(task);
+      currentTasks.addAll(response.tasks);
       _tasksSubject.add(currentTasks);
       _loaded();
     }).catchError((error) {
@@ -94,15 +97,14 @@ class TaskGlobalBloc implements Bloc {
         )
         .toList();
 
-    taskRepository.delete(items: deleteTasks).then((map) async {
-      print(map);
-      map[taskRepository.DELETED_IDS_KEY].forEach(
-        (id) => _tasksSubject.value.removeWhere((task) => (id as int) == task.id),
-      );
+    taskRepository
+        .delete(TaskRequest(tasks: deleteTasks))
+        .then((response) async {
+      response.deletedIDs.forEach(
+          (id) => _tasksSubject.value.removeWhere((task) => id == task.id));
       _tasksSubject.add(_tasksSubject.value);
 
-      final isSuccess =
-          deleteTasks.length == map[taskRepository.DELETED_IDS_KEY].length;
+      final isSuccess = deleteTasks.length == response.deletedIDs.length;
       deleteSubject.add(isSuccess);
       _loaded();
     }).catchError((error) {

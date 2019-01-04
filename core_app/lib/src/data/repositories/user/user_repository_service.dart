@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:core_app/core_app.dart';
 import 'package:core_app/src/data/repositories/user/user_api_service.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
+import 'package:core_app/src/data/repositories/user/user_request.dart';
+import 'package:core_app/src/data/repositories/user/user_response.dart';
 
 class UserRepositoryService extends UserRepository {
   final UserApiService apiService;
@@ -35,25 +37,25 @@ class UserRepositoryService extends UserRepository {
   }
 
   @override
-  Future<List<User>> get(Map<String, dynamic> by) {
-    // TODO: implement get
-    return null;
-  }
-
-  @override
-  Future<Map<String, dynamic>> delete({List<User> items}) {
+  Future<UserResponse> delete(UserRequest request) {
     // TODO: implement delete
     return null;
   }
 
   @override
-  Future<User> insert(User item) {
+  Future<UserResponse> get(UserRequest request) {
+    // TODO: implement get
+    return null;
+  }
+
+  @override
+  Future<UserResponse> insert(UserRequest request) {
     // TODO: implement insert
     return null;
   }
 
   @override
-  Future<Map<String, dynamic>> update(List<User> items) {
+  Future<UserResponse> update(UserRequest request) {
     // TODO: implement update
     return null;
   }

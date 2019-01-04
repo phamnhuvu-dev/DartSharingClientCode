@@ -1,7 +1,9 @@
 import 'package:core_app/src/data/models/task.dart';
 import 'package:core_app/src/data/repositories/repository.dart';
+import 'package:core_app/src/data/repositories/task/task_request.dart';
+import 'package:core_app/src/data/repositories/task/task_response.dart';
 
-abstract class TaskRepository extends Repository<Task> {
+abstract class TaskRepository extends Repository<TaskRequest, TaskResponse> {
   final String PAGE_KEY = "page";
   final String TASKS_KEY = "tasks";
   final String TASK_KEY = "task";
