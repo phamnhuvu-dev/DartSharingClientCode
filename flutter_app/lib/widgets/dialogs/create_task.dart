@@ -10,8 +10,9 @@ import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 class CreateTask extends StatefulWidget {
 
   final TaskGlobalBloc taskGlobalBloc;
+  final ValueGetter<void> onTapCreate;
 
-  const CreateTask({Key key, this.taskGlobalBloc}) : super(key: key);
+  const CreateTask({Key key, this.taskGlobalBloc, this.onTapCreate}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _CreateTaskState();
@@ -54,12 +55,7 @@ class _CreateTaskState extends State<CreateTask> {
                         ),
                       );
                       if (AppDialog.close(context)) {
-                        AppDialog.show(
-                          context: context,
-                          child: Loading(
-                            message: "Creating Dialog",
-                          ),
-                        );
+                        widget.onTapCreate();
                       }
                     },
                   ),

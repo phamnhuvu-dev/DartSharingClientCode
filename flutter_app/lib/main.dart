@@ -17,6 +17,10 @@ void main() async {
     IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
     isIphoneX = iosInfo.name == "iPhone X";
   }
+  injectLauncher();
+  injectRepository();
+  injectBloc();
+  injectScreen();
   runApp(DeviceInfo(isIPhoneX: isIphoneX, child: App()));
 }
 
@@ -33,15 +37,10 @@ class App extends StatelessWidget {
       routes: {
 //          Routes.initial: (context) =>
 //              ScreenWidgetFactory.create<SplashScreen>(context),
-        "/main": (context) =>
-            ScreenFactory.create<MainScreen>(context: context),
-
-        Routes.initial: (context) =>
-            ScreenFactory.create<LoginScreen>(context: context),
-        Routes.register: (context) =>
-            ScreenFactory.create<RegisterScreen>(context: context),
-        Routes.task_detail: (context) =>
-            ScreenFactory.create<TaskDetailScreen>(),
+        "/main": (context) => Injector.get<MainScreen>(),
+        Routes.initial: (context) => Injector.get<LoginScreen>(),
+        Routes.register: (context) => Injector.get<RegisterScreen>(),
+        Routes.task_detail: (context) => Injector.get<TaskDetailScreen>(),
       },
       initialRoute: Routes.initial,
     );

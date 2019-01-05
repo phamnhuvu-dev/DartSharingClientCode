@@ -168,6 +168,12 @@ class _TaskListScreenState extends State<TaskListScreen> {
             context: context,
             child: CreateTask(
               taskGlobalBloc: taskGlobalBloc,
+              onTapCreate: () => AppDialog.show(
+                    context: context,
+                    child: Loading(
+                      message: "Creating Dialog",
+                    ),
+                  ),
             ),
             backgroundColor: Colors.transparent,
           );

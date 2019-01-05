@@ -40,8 +40,8 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     currentIndexSubject = BehaviorSubject(seedValue: 0);
     screens = <Widget>[
-      ScreenFactory.create<TaskListScreen>(context: context),
-      ScreenFactory.create<AboutScreen>(context: context),
+      Injector.get<TaskListScreen>(),
+      Injector.get<AboutScreen>(),
     ];
   }
 

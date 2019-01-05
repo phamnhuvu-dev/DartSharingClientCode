@@ -4,7 +4,6 @@ import 'package:flutter_app/statics/app_colors.dart';
 class SearchBar extends StatefulWidget {
   final double height = 40.0;
 
-
   const SearchBar({Key key}) : super(key: key);
 
   @override

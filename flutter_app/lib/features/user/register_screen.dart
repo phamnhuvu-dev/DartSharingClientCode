@@ -38,14 +38,20 @@ class _RegisterScreenState extends State<RegisterScreen>
     );
   }
 
-  Widget body() {
+
+  @override
+  void initState() {
+    super.initState();
     streamSubscription = widget.userGlobalBloc.user.listen(
-      (user) {
+          (user) {
         streamSubscription.cancel();
         Navigator.of(context)
             .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
       },
     );
+  }
+
+  Widget body() {
     return SingleChildScrollView(
       key: bodyKey,
       child: ScrollableContentCenter(
@@ -142,4 +148,12 @@ class _RegisterScreenState extends State<RegisterScreen>
       ),
     );
   }
+
+  @override
+  void dispose() {
+    streamSubscription.cancel();
+    super.dispose();
+  }
+
+
 }

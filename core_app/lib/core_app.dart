@@ -13,15 +13,16 @@ export 'src/features/bloc_provider.dart';
 
 // Global blocs
 
+// Inject
+export 'src/di/injector.dart';
+export 'src/di/inject_launcher.dart';
+export 'src/di/inject_screen.dart';
+export 'src/di/inject_bloc.dart';
+export 'src/di/inject_repository.dart';
 
 // Repositories service
 export 'src/data/repositories/user/user_repository_service.dart';
 export 'src/data/repositories/user/user_api_service.dart';
-
-// Factories
-export 'src/factories/bloc_factory.dart';
-export 'src/factories/repository_factory.dart';
-export 'src/factories/screen_factory.dart';
 
 // Static
 export 'src/statics/routes.dart';
