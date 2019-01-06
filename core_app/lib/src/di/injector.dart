@@ -5,10 +5,10 @@ class Injector {
 
   static final _factories = Map<Type, _Factory<dynamic>>();
 
-  static void register<D>({
+  static Future<void> register<D>({
     InjectorType type,
     FactoryFunc<D> factoryFunc,
-  }) {
+  }) async {
     _factories[D] = _Factory<D>(
       type,
       factoryFunc,

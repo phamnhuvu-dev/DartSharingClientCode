@@ -12,15 +12,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:device_info/device_info.dart';
 
 void main() async {
+  injectRepository();
+  injectBloc();
+  injectScreen();
+
   bool isIphoneX = false;
   if (Platform.isIOS) {
     IosDeviceInfo iosInfo = await DeviceInfoPlugin().iosInfo;
     isIphoneX = iosInfo.name == "iPhone X";
   }
-  injectLauncher();
-  injectRepository();
-  injectBloc();
-  injectScreen();
+
   runApp(DeviceInfo(isIPhoneX: isIphoneX, child: App()));
 }
 

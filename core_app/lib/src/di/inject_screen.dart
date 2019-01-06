@@ -5,9 +5,17 @@ import 'package:flutter_app/features/main/about/about_screen.dart';
 import 'package:flutter_app/features/main/main_screen.dart';
 import 'package:flutter_app/features/main/task/task_detail_screen.dart';
 import 'package:flutter_app/features/main/task/task_list_screen.dart';
+import 'package:flutter_app/features/user/login_screen.dart';
 import 'package:flutter_app/features/user/register_screen.dart';
 
-injectScreen() async {
+void injectScreen() {
+  Injector.register<LoginScreen>(
+    type: InjectorType.provide,
+    factoryFunc: () => LoginScreen(
+      userGlobalBloc: Injector.get<UserGlobalBloc>(),
+    ),
+  );
+
   Injector.register<RegisterScreen>(
     type: InjectorType.provide,
     factoryFunc: () => RegisterScreen(

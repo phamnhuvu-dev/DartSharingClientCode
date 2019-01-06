@@ -15,7 +15,6 @@ export 'src/features/bloc_provider.dart';
 
 // Inject
 export 'src/di/injector.dart';
-export 'src/di/inject_launcher.dart';
 export 'src/di/inject_screen.dart';
 export 'src/di/inject_bloc.dart';
 export 'src/di/inject_repository.dart';
