@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/main/task/task_item.dart';
+import 'package:flutter_app/features/task/task_item.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/widgets/buttons/add_button.dart';
 import 'package:flutter_app/widgets/delete_bar.dart';
 import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
 import 'package:flutter_app/widgets/dialogs/create_task.dart';
 import 'package:flutter_app/widgets/dialogs/loading.dart';
+import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 import 'package:flutter_app/widgets/search_bar.dart';
 
 class TaskListScreen extends StatefulWidget {
@@ -30,7 +31,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   void initState() {
     super.initState();
-
     taskGlobalBloc = widget.taskGlobalBloc;
     taskGlobalBloc.loading.listen((isLoading) {
       if (!isLoading && context != null) {
@@ -47,11 +47,13 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      child: Stack(
-        children: <Widget>[
-          buildBody(),
-          buildAddButton(),
-        ],
+      child: WhiteScaffold(
+        child: Stack(
+          children: <Widget>[
+            buildBody(),
+            buildAddButton(),
+          ],
+        ),
       ),
       onWillPop: () {
         if (taskGlobalBloc.isDeleteMode) {
@@ -113,7 +115,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
           final List<Task> tasks = snapshot.data;
 
           return ListView.builder(
-            key: PageStorageKey("1"),
             itemCount: tasks.length,
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             itemBuilder: (BuildContext context, int index) {
@@ -130,15 +131,18 @@ class _TaskListScreenState extends State<TaskListScreen> {
                     final bool isDeleteMode =
                         snapshot.connectionState == ConnectionState.active &&
                             snapshot.data;
-
-                    return TaskItem(
-                      isLast: index == tasks.length - 1,
-                      task: task,
-                      isDeleteMode: isDeleteMode,
-                      select: () {
-                        widget.taskGlobalBloc.selectTask(task);
-                        Navigator.pushNamed(context, Routes.task_detail);
-                      },
+                    return Container(
+                      margin: EdgeInsets.only(
+                          bottom:
+                              index == tasks.length - 1 ? (64 + 46) / 2 : 15.0),
+                      child: TaskItem(
+                        task: task,
+                        isDeleteMode: isDeleteMode,
+                        select: () {
+                          widget.taskGlobalBloc.selectTask(task);
+                          Navigator.pushNamed(context, Routes.task_detail);
+                        },
+                      ),
                     );
                   },
                 ),

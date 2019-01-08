@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/statics/app_colors.dart';
-import 'package:rxdart/subjects.dart';
 
 class AppDialog extends StatefulWidget {
   final Widget child;
   final WillPopCallback onWillPop;
   final Color backgroundColor;
 
-  const AppDialog({
+  const AppDialog._internal({
     Key key,
     this.child,
     this.onWillPop,
     this.backgroundColor = AppColors.white,
   }) : super(key: key);
+
+//  const AppDialog({
+//    Key key,
+//    this.child,
+//    this.onWillPop,
+//    this.backgroundColor = AppColors.white,
+//  }) : super(key: key);
 
   static void show({
     BuildContext context,
@@ -24,7 +30,7 @@ class AppDialog extends StatefulWidget {
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return AppDialog(
+        return AppDialog._internal(
           child: child,
           onWillPop: onWillPop,
           backgroundColor: backgroundColor,
@@ -35,7 +41,7 @@ class AppDialog extends StatefulWidget {
 
   static bool close(BuildContext context) {
     if (_AppDialogState.stackDialog.length > 0 && context != null) {
-      return Navigator.pop(context);
+      return Navigator.of(context, rootNavigator: true).pop();
     } else {
       return false;
     }

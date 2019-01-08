@@ -5,7 +5,7 @@ import 'package:core_app/src/features/bloc.dart';
 import 'package:rxdart/subjects.dart';
 
 class TaskGlobalBloc implements Bloc {
-  TaskGlobalBloc(this.taskRepository);
+  TaskGlobalBloc({this.taskRepository});
 
   final TaskRepository taskRepository;
 

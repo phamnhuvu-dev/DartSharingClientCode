@@ -5,13 +5,12 @@ import 'package:rxdart/subjects.dart';
 
 class TaskItem extends StatefulWidget {
   final double bottom;
-  final bool isLast;
   final Task task;
   final isDeleteMode;
   final ValueGetter<void> select;
 
   const TaskItem(
-      {Key key, this.bottom, this.isLast, this.task, this.isDeleteMode = false, this.select})
+      {Key key, this.bottom, this.task, this.isDeleteMode = false, this.select})
       : super(key: key);
 
   @override
@@ -44,7 +43,6 @@ class _TaskItemState extends State<TaskItem> {
         left: 10.0,
         right: 10.0,
       ),
-      margin: EdgeInsets.only(bottom: widget.isLast ? (64 + 46) / 2 : 15.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(35.0),

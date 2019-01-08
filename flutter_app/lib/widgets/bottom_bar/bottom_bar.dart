@@ -70,7 +70,8 @@ class _BottomBarState extends State<BottomBar> {
                     item.title,
                     style: TextStyle(
                       color: isSelect ? selectColor : unSelectColor,
-                      fontWeight: isSelect ? FontWeight.bold : FontWeight.normal,
+                      fontWeight:
+                          isSelect ? FontWeight.bold : FontWeight.normal,
                     ),
                   )
                 ],
@@ -82,10 +83,12 @@ class _BottomBarState extends State<BottomBar> {
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[
-            CustomPaint(
+            GestureDetector(onTap: () {
+              print("OK");
+            }, child: CustomPaint(
               size: Size(width, height),
               foregroundPainter: BottomPainter(),
-            ),
+            ),),
             Padding(
               padding: EdgeInsets.only(bottom: paddingBottom),
               child: Row(
@@ -159,7 +162,6 @@ class BottomPainter extends CustomPainter {
       final pointX5 = (width - 64.0) / 2;
       final pointY5 = zero;
 
-      _path = Path();
       _path.reset();
       _path.moveTo(pointX0, pointY0);
       _path.lineTo(pointX1, pointY1);
@@ -177,5 +179,10 @@ class BottomPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
+  }
+
+  @override
+  bool hitTest(Offset position) {
+    return _path.contains(position);
   }
 }

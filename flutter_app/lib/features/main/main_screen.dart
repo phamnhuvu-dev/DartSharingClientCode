@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/main/about/about_screen.dart';
-import 'package:flutter_app/features/main/task/task_list_screen.dart';
+import 'package:flutter_app/features/about/about_screen.dart';
+import 'package:flutter_app/features/task/app_navigator.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/widgets/bottom_bar/bottom_bar.dart';
 import 'package:flutter_app/widgets/bottom_bar/bottom_bar_item.dart';
@@ -29,18 +29,19 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-//  bool isShowingDialog = false;
-
   BehaviorSubject<int> currentIndexSubject;
 
   List<Widget> screens;
+  GlobalKey<NavigatorState> taskKey = GlobalKey<NavigatorState>();
 
   @override
   void initState() {
     super.initState();
     currentIndexSubject = BehaviorSubject(seedValue: 0);
     screens = <Widget>[
-      Injector.get<TaskListScreen>(),
+      AppNavigator(
+        navigatorKey: taskKey,
+      ),
       Injector.get<AboutScreen>(),
     ];
   }
@@ -59,26 +60,43 @@ class _MainScreenState extends State<MainScreen> {
     if (Platform.isIOS && deviceInfo.isIPhoneX) {
       paddingBottom += deviceInfo.edgeHeight;
     }
-    return Stack(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.only(bottom: paddingBottom),
-          child: StreamBuilder(
-            stream: currentIndexSubject.stream,
-            builder: (context, AsyncSnapshot<int> snapshot) {
-              if (snapshot.connectionState == ConnectionState.active) {
-                return screens[snapshot.data];
-              } else {
-                return Container();
-              }
-            },
-          ),
+    return WillPopScope(
+        child: Stack(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(bottom: paddingBottom),
+              child: StreamBuilder(
+                stream: currentIndexSubject.stream,
+                builder: (context, AsyncSnapshot<int> snapshot) {
+                  final children = screens
+                      .map((screen) => buildOffStageNavigator(screen))
+                      .toList();
+                  if (snapshot.connectionState == ConnectionState.active) {
+                    return Stack(
+                      children: children,
+                    );
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            ),
+            buildBottomBar(),
+          ],
         ),
-        buildBottomBar(),
-      ],
-    );
+        onWillPop: () async {
+          print("Pop");
+          final currentIndex = currentIndexSubject.value;
+          if (currentIndex == 0) {
+            return !await (screens[currentIndex] as AppNavigator)
+                .navigatorKey
+                .currentState
+                .maybePop();
+          } else {
+            return true;
+          }
+        });
   }
-
 
   Widget buildBottomBar() {
     return Align(
@@ -92,6 +110,16 @@ class _MainScreenState extends State<MainScreen> {
           BottomBarItem(title: "About", icon: Icon(Icons.person)),
         ],
       ),
+    );
+  }
+
+  Widget buildOffStageNavigator(Widget child) {
+    print(screens.indexOf(child));
+    final childIndex = screens.indexOf(child);
+    final currentIndex = currentIndexSubject.value;
+    return Offstage(
+      offstage: childIndex != currentIndex,
+      child: child,
     );
   }
 

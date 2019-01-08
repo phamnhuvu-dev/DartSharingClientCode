@@ -8,8 +8,15 @@ class AboutScreen extends StatefulWidget {
 class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
+    print("Build AboutScreen");
     return Center(
       child: Text("About"),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print("AboutScreen");
   }
 }
