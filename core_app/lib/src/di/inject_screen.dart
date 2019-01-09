@@ -1,5 +1,5 @@
 import 'package:core_app/src/di/injector.dart';
-import 'package:flutter_app/features/main/about/about_screen.dart';
+import 'package:flutter_app/features/about/about_screen.dart';
 import 'package:flutter_app/features/main/main_screen.dart';
 import 'package:flutter_app/features/task/task_detail_screen.dart';
 import 'package:flutter_app/features/task/task_list_screen.dart';

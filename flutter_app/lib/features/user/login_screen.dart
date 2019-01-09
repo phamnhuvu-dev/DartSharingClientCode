@@ -35,9 +35,10 @@ class _LoginScreenState extends State<LoginScreen>
     streamSubscription = widget.userGlobalBloc.user.listen(
       (user) {
         streamSubscription.cancel();
-        AppDialog.close(context);
-        Navigator.of(context).pushNamedAndRemoveUntil(
-            "/main", (Route<dynamic> route) => false);
+        if (AppDialog.close(context)) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              Routes.main, (Route<dynamic> route) => false);
+        }
       },
     );
   }

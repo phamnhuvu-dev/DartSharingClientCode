@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/about/about_screen.dart';
-import 'package:flutter_app/features/task/app_navigator.dart';
+import 'package:flutter_app/widgets/navigator/app_navigator.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/widgets/bottom_bar/bottom_bar.dart';
 import 'package:flutter_app/widgets/bottom_bar/bottom_bar_item.dart';

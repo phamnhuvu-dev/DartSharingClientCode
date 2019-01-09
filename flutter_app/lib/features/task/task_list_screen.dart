@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/main/main_frame.dart';
 import 'package:flutter_app/features/task/task_item.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/widgets/buttons/add_button.dart';
@@ -34,7 +35,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
     taskGlobalBloc = widget.taskGlobalBloc;
     taskGlobalBloc.loading.listen((isLoading) {
       if (!isLoading && context != null) {
-        print("----------------");
         AppDialog.close(context);
       }
     });
@@ -47,20 +47,31 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      child: WhiteScaffold(
-        child: Stack(
-          children: <Widget>[
-            buildBody(),
-            buildAddButton(),
-          ],
-        ),
+      child: MainFrame(
+        child: buildBody(),
+        iconData: Icons.add,
+        onTapCircleButton: () {
+          AppDialog.show(
+            context: context,
+            child: CreateTask(
+              taskGlobalBloc: taskGlobalBloc,
+              onTapCreate: () => AppDialog.show(
+                    context: context,
+                    child: Loading(
+                      message: "Creating Dialog",
+                    ),
+                  ),
+            ),
+            backgroundColor: Colors.transparent,
+          );
+        },
       ),
-      onWillPop: () {
+      onWillPop: () async {
         if (taskGlobalBloc.isDeleteMode) {
           taskGlobalBloc.turnOffDeleteMode();
-          return Future.value(false);
+          return false;
         } else {
-          return Future.value(true);
+          return true;
         }
       },
     );
@@ -121,7 +132,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
               final task = tasks[index];
               return InkWell(
                 onLongPress: () {
-                  print("LongPress");
                   task.isDeleteSelect = true;
                   taskGlobalBloc.turnOnDeleteMode();
                 },
@@ -153,36 +163,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
           return Container();
         }
       },
-    );
-  }
-
-  Widget buildAddButton() {
-    final deviceInfo = DeviceInfo.of(context);
-    double paddingBottom = (64.0 - 46.0) / 2;
-    if (Platform.isIOS && deviceInfo.isIPhoneX) {
-      paddingBottom += deviceInfo.edgeHeight;
-    }
-    return Positioned(
-      left: 0.0,
-      right: 0.0,
-      bottom: paddingBottom,
-      child: AddButton(
-        onTap: () {
-          AppDialog.show(
-            context: context,
-            child: CreateTask(
-              taskGlobalBloc: taskGlobalBloc,
-              onTapCreate: () => AppDialog.show(
-                    context: context,
-                    child: Loading(
-                      message: "Creating Dialog",
-                    ),
-                  ),
-            ),
-            backgroundColor: Colors.transparent,
-          );
-        },
-      ),
     );
   }
 }

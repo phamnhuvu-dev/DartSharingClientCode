@@ -1,5 +1,6 @@
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/features/main/main_frame.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 
@@ -10,7 +11,7 @@ class TaskDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WhiteScaffold(
+    return MainFrame(
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,6 +28,10 @@ class TaskDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+      iconData: Icons.edit,
+      onTapCircleButton: () {
+        print("Edit");
+      },
     );
   }
 }

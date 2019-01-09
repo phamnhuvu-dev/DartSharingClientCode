@@ -25,6 +25,7 @@ void main() async {
 }
 
 class App extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,9 +36,7 @@ class App extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       routes: {
-//          Routes.initial: (context) =>
-//              ScreenWidgetFactory.create<SplashScreen>(context),
-        "/main": (context) => Injector.get<MainScreen>(),
+        Routes.main: (context) => Injector.get<MainScreen>(),
         Routes.initial: (context) => Injector.get<LoginScreen>(),
         Routes.register: (context) => Injector.get<RegisterScreen>(),
       },
