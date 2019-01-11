@@ -1,16 +1,11 @@
-import 'dart:io';
-
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/main/main_frame.dart';
 import 'package:flutter_app/features/task/task_item.dart';
-import 'package:flutter_app/modules/device_info.dart';
-import 'package:flutter_app/widgets/buttons/add_button.dart';
 import 'package:flutter_app/widgets/delete_bar.dart';
 import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
-import 'package:flutter_app/widgets/dialogs/create_task.dart';
+import 'package:flutter_app/widgets/dialogs/create_or_update_task.dart';
 import 'package:flutter_app/widgets/dialogs/loading.dart';
-import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 import 'package:flutter_app/widgets/search_bar.dart';
 
 class TaskListScreen extends StatefulWidget {
@@ -28,6 +23,7 @@ class TaskListScreen extends StatefulWidget {
 
 class _TaskListScreenState extends State<TaskListScreen> {
   TaskGlobalBloc taskGlobalBloc;
+  final ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -42,6 +38,13 @@ class _TaskListScreenState extends State<TaskListScreen> {
     if (taskGlobalBloc.taskCount == 0) {
       taskGlobalBloc.loadTasks();
     }
+
+    scrollController.addListener(() {
+      if (scrollController.position.extentAfter == 0 &&
+          scrollController.position.axisDirection == AxisDirection.down) {
+        taskGlobalBloc.loadTasks();
+      }
+    });
   }
 
   @override
@@ -53,9 +56,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
         onTapCircleButton: () {
           AppDialog.show(
             context: context,
-            child: CreateTask(
+            child: CreateOrUpdateTask(
               taskGlobalBloc: taskGlobalBloc,
-              onTapCreate: () => AppDialog.show(
+              onTapCreateOrUpdate: () => AppDialog.show(
                     context: context,
                     child: Loading(
                       message: "Creating Dialog",
@@ -126,6 +129,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
           final List<Task> tasks = snapshot.data;
 
           return ListView.builder(
+            controller: scrollController,
             itemCount: tasks.length,
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             itemBuilder: (BuildContext context, int index) {
@@ -164,5 +168,11 @@ class _TaskListScreenState extends State<TaskListScreen> {
         }
       },
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }

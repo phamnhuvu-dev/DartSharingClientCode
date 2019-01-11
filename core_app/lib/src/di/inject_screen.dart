@@ -10,8 +10,8 @@ void injectScreen() {
   Injector.register<LoginScreen>(
     type: InjectorType.provide,
     factoryFunc: () => LoginScreen(
-      userGlobalBloc: Injector.get(),
-    ),
+          userGlobalBloc: Injector.get(),
+        ),
   );
 
   Injector.register<RegisterScreen>(
@@ -44,6 +44,8 @@ void injectScreen() {
 
   Injector.register<AboutScreen>(
     type: InjectorType.provide,
-    factoryFunc: () => AboutScreen(),
+    factoryFunc: () => AboutScreen(
+          userGlobalBloc: Injector.get(),
+        ),
   );
 }

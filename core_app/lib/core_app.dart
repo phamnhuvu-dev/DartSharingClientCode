@@ -7,7 +7,7 @@ library core_app;
 export 'src/data/models/user.dart';
 export 'src/data/models/task.dart';
 
-export 'src/features/bloc_provider.dart';
+
 // Blocs
 
 
@@ -29,9 +29,9 @@ export 'src/statics/routes.dart';
 
 // Src
 export 'package:core_app/src/features/bloc.dart';
-export 'package:core_app/src/features/global_blocs/flutter_global_bloc.dart';
-export 'package:core_app/src/features/global_blocs/user_global_bloc.dart';
-export 'package:core_app/src/features/global_blocs/task_global_bloc.dart';
+export 'package:core_app/src/features/flutter_global_bloc.dart';
+export 'package:core_app/src/features/user_global_bloc.dart';
+export 'package:core_app/src/features/task_global_bloc.dart';
 
 //Module
 export 'package:core_app/src/modules/validator.dart';

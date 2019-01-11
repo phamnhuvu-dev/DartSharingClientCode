@@ -163,9 +163,4 @@ class UserGlobalBloc implements Bloc {
   void dispose() {
     _userSubject.close();
   }
-
-  @override
-  bool isClose() {
-    return _userSubject.isClosed;
-  }
 }

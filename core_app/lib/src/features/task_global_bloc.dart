@@ -10,6 +10,7 @@ class TaskGlobalBloc implements Bloc {
   final TaskRepository taskRepository;
 
   int _currentPage = 0;
+  int _lastGetItemLength = 0;
 
   ///////////// DELETE MODE SUBJECT //////////////
   BehaviorSubject<bool> _deleteModeSubject = BehaviorSubject(seedValue: false);
@@ -59,10 +60,20 @@ class TaskGlobalBloc implements Bloc {
 
     _currentPage += 1;
     taskRepository.get(TaskRequest(page: _currentPage)).then((response) {
+
+      int length = response.tasks.length;
+      if (length < 10) {
+        _currentPage -= 1;
+        _lastGetItemLength = length;
+      } else {
+        _lastGetItemLength = 10;
+      }
+
       final currentTask = _tasksSubject.value;
       currentTask.addAll(response.tasks);
       _tasksSubject.add(currentTask);
       _loaded();
+
     }).catchError((error) {
       print(error);
       _currentPage -= 1;
@@ -75,7 +86,7 @@ class TaskGlobalBloc implements Bloc {
 
     taskRepository.insert(TaskRequest(tasks: [task])).then((response) {
       final currentTasks = _tasksSubject.value;
-      currentTasks.addAll(response.tasks);
+      currentTasks.insertAll(0, response.tasks);
       _tasksSubject.add(currentTasks);
       _loaded();
     }).catchError((error) {
@@ -133,10 +144,5 @@ class TaskGlobalBloc implements Bloc {
     _loadingSubject.close();
 //    _taskSubject.close();
     _deleteModeSubject.close();
-  }
-
-  @override
-  bool isClose() {
-    return _tasksSubject.isClosed;
   }
 }

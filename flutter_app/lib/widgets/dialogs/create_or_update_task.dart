@@ -3,31 +3,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/buttons/button_theme.dart';
 import 'package:flutter_app/widgets/buttons/rect_button.dart';
 import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
-import 'package:flutter_app/widgets/dialogs/loading.dart';
 import 'package:flutter_app/widgets/oval_head_card.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
-class CreateTask extends StatefulWidget {
-
+class CreateOrUpdateTask extends StatefulWidget {
   final TaskGlobalBloc taskGlobalBloc;
-  final ValueGetter<void> onTapCreate;
+  final ValueGetter<void> onTapCreateOrUpdate;
+  final bool isCreateTask;
+  final Task task;
 
-  const CreateTask({Key key, this.taskGlobalBloc, this.onTapCreate}) : super(key: key);
+  const CreateOrUpdateTask({
+    Key key,
+    this.taskGlobalBloc,
+    this.onTapCreateOrUpdate,
+    this.isCreateTask = true,
+    this.task,
+  }) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _CreateTaskState();
+  State<StatefulWidget> createState() => _CreateOrUpdateTaskState();
 }
 
-class _CreateTaskState extends State<CreateTask> {
-
+class _CreateOrUpdateTaskState extends State<CreateOrUpdateTask> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final bool isCreateTask = widget.isCreateTask;
+    final Task task = widget.task;
+
+    if (!isCreateTask) {
+      titleController.text = task.title;
+      descriptionController.text = task.description;
+    }
+
     return SingleChildScrollView(
       child: OvalHeadCard(
-        title: "Create Task",
+        title: isCreateTask ? "Create Task" : "Update Task",
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -46,16 +59,22 @@ class _CreateTaskState extends State<CreateTask> {
                 Flexible(
                   child: RectButton(
                     theme: MalibuButtonTheme(),
-                    text: "Create",
+                    text: isCreateTask ? "Create" : "Update",
                     onTap: () {
-                      widget.taskGlobalBloc.createTask(
-                        Task(
-                          title: titleController.text,
-                          description: descriptionController.text,
-                        ),
-                      );
+                      if (isCreateTask) {
+                        widget.taskGlobalBloc.createTask(
+                          Task(
+                            title: titleController.text,
+                            description: descriptionController.text,
+                          ),
+                        );
+                      } else {
+                        widget.task.title = titleController.text;
+                        widget.task.description = descriptionController.text;
+                      }
+
                       if (AppDialog.close(context)) {
-                        widget.onTapCreate();
+                        widget.onTapCreateOrUpdate();
                       }
                     },
                   ),

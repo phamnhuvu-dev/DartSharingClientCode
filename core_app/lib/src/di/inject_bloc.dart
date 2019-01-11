@@ -1,7 +1,7 @@
 import 'package:core_app/src/di/injector.dart';
-import 'package:core_app/src/features/global_blocs/flutter_global_bloc.dart';
-import 'package:core_app/src/features/global_blocs/task_global_bloc.dart';
-import 'package:core_app/src/features/global_blocs/user_global_bloc.dart';
+import 'package:core_app/src/features/flutter_global_bloc.dart';
+import 'package:core_app/src/features/task_global_bloc.dart';
+import 'package:core_app/src/features/user_global_bloc.dart';
 import 'package:core_app/src/modules/validator.dart';
 
 void injectBloc() {
