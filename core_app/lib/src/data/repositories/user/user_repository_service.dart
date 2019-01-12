@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:core_app/core_app.dart';
 import 'package:core_app/src/data/repositories/user/user_api_service.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
-import 'package:core_app/src/data/repositories/user/user_request.dart';
-import 'package:core_app/src/data/repositories/user/user_response.dart';
+import 'package:core_app/src/data/models/user/user_request.dart';
+import 'package:core_app/src/data/models/user/user_response.dart';
 
 class UserRepositoryService extends UserRepository {
   final UserApiService apiService;

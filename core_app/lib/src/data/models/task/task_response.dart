@@ -1,4 +1,4 @@
-import 'package:core_app/src/data/models/task.dart';
+import 'package:core_app/src/data/models/task/task.dart';
 
 class TaskResponse {
   final String message;

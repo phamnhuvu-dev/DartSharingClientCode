@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:async/async.dart';
-import 'package:core_app/src/data/models/user.dart';
+import 'package:core_app/src/data/models/user/user.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
 import 'package:core_app/src/features/bloc.dart';
 import 'package:core_app/src/modules/api_service.dart';

@@ -4,8 +4,8 @@
 library core_app;
 
 // Models
-export 'src/data/models/user.dart';
-export 'src/data/models/task.dart';
+export 'package:core_app/src/data/models/user/user.dart';
+export 'package:core_app/src/data/models/task/task.dart';
 
 
 // Blocs

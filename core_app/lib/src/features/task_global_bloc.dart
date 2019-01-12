@@ -1,6 +1,6 @@
-import 'package:core_app/src/data/models/task.dart';
+import 'package:core_app/src/data/models/task/task.dart';
 import 'package:core_app/src/data/repositories/task/task_repository.dart';
-import 'package:core_app/src/data/repositories/task/task_request.dart';
+import 'package:core_app/src/data/models/task/task_request.dart';
 import 'package:core_app/src/features/bloc.dart';
 import 'package:rxdart/subjects.dart';
 
