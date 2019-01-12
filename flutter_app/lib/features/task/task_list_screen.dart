@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_app/core_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/main/main_frame.dart';
@@ -9,9 +11,8 @@ import 'package:flutter_app/widgets/dialogs/loading.dart';
 import 'package:flutter_app/widgets/search_bar.dart';
 
 class TaskListScreen extends StatefulWidget {
-  final TaskGlobalBloc taskGlobalBloc;
 
-  const TaskListScreen({Key key, this.taskGlobalBloc}) : super(key: key);
+  const TaskListScreen({Key key,}) : super(key: key);
 
   static _TaskListScreenState cast(State<TaskListScreen> state) {
     return state as _TaskListScreenState;
@@ -24,12 +25,13 @@ class TaskListScreen extends StatefulWidget {
 class _TaskListScreenState extends State<TaskListScreen> {
   TaskGlobalBloc taskGlobalBloc;
   final ScrollController scrollController = ScrollController();
-
+  StreamSubscription<bool> loadingSub;
   @override
   void initState() {
     super.initState();
-    taskGlobalBloc = widget.taskGlobalBloc;
-    taskGlobalBloc.loading.listen((isLoading) {
+    taskGlobalBloc = Injector.get(force: true);
+
+    loadingSub = taskGlobalBloc.loading.listen((isLoading) {
       if (!isLoading && context != null) {
         AppDialog.close(context);
       }
@@ -49,6 +51,10 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (ModalRoute.of(context).isCurrent && loadingSub.isPaused) {
+      loadingSub.resume();
+    }
+
     return WillPopScope(
       child: MainFrame(
         child: buildBody(),
@@ -57,7 +63,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
           AppDialog.show(
             context: context,
             child: CreateOrUpdateTask(
-              taskGlobalBloc: taskGlobalBloc,
               onTapCreateOrUpdate: () => AppDialog.show(
                     context: context,
                     child: Loading(
@@ -153,7 +158,8 @@ class _TaskListScreenState extends State<TaskListScreen> {
                         task: task,
                         isDeleteMode: isDeleteMode,
                         select: () {
-                          widget.taskGlobalBloc.selectTask(task);
+                          taskGlobalBloc.selectTask(task);
+                          loadingSub.pause();
                           Navigator.pushNamed(context, Routes.task_detail);
                         },
                       ),
@@ -173,6 +179,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
   @override
   void dispose() {
     scrollController.dispose();
+    taskGlobalBloc.dispose();
     super.dispose();
   }
 }

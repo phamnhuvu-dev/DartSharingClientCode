@@ -7,14 +7,12 @@ import 'package:flutter_app/widgets/oval_head_card.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class CreateOrUpdateTask extends StatefulWidget {
-  final TaskGlobalBloc taskGlobalBloc;
   final ValueGetter<void> onTapCreateOrUpdate;
   final bool isCreateTask;
   final Task task;
 
   const CreateOrUpdateTask({
     Key key,
-    this.taskGlobalBloc,
     this.onTapCreateOrUpdate,
     this.isCreateTask = true,
     this.task,
@@ -25,8 +23,16 @@ class CreateOrUpdateTask extends StatefulWidget {
 }
 
 class _CreateOrUpdateTaskState extends State<CreateOrUpdateTask> {
+  TaskGlobalBloc taskGlobalBloc;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    taskGlobalBloc = Injector.get();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +68,7 @@ class _CreateOrUpdateTaskState extends State<CreateOrUpdateTask> {
                     text: isCreateTask ? "Create" : "Update",
                     onTap: () {
                       if (isCreateTask) {
-                        widget.taskGlobalBloc.createTask(
+                        taskGlobalBloc.createTask(
                           Task(
                             title: titleController.text,
                             description: descriptionController.text,
@@ -71,6 +77,7 @@ class _CreateOrUpdateTaskState extends State<CreateOrUpdateTask> {
                       } else {
                         widget.task.title = titleController.text;
                         widget.task.description = descriptionController.text;
+                        taskGlobalBloc.updateTask();
                       }
 
                       if (AppDialog.close(context)) {

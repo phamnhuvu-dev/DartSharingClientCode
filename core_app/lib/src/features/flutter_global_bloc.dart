@@ -23,5 +23,9 @@ class FlutterGlobalBloc implements Bloc {
   @override
   void dispose() {
     subscription.cancel();
+    _connectivitySubject.close();
   }
+
+  @override
+  bool isClose() => _connectivitySubject.isClosed;
 }

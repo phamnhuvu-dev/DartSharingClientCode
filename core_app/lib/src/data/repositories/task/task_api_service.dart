@@ -22,6 +22,7 @@ class TaskApiService extends ApiService {
     method = PUT,
     url = TASK_URL,
     Map<String, String> headers,
+    String task_id,
     String title,
     String description,
   });

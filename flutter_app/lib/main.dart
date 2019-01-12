@@ -13,7 +13,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() async {
   injectRepository();
   injectBloc();
-  injectScreen();
 
   bool isIphoneX = false;
   if (Platform.isIOS) {
@@ -36,9 +35,9 @@ class App extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       routes: {
-        Routes.main: (context) => Injector.get<MainScreen>(),
-        Routes.initial: (context) => Injector.get<LoginScreen>(),
-        Routes.register: (context) => Injector.get<RegisterScreen>(),
+        Routes.main: (context) => MainScreen(),
+        Routes.initial: (context) => LoginScreen(),
+        Routes.register: (context) => RegisterScreen(),
       },
       initialRoute: Routes.initial,
     );

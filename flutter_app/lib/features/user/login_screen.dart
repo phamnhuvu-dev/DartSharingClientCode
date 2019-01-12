@@ -12,11 +12,9 @@ import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
-  final UserGlobalBloc userGlobalBloc;
 
   const LoginScreen({
     Key key,
-    @required this.userGlobalBloc,
   }) : super(key: key);
 
   @override
@@ -29,10 +27,13 @@ class _LoginScreenState extends State<LoginScreen>
   TextEditingController passwordController = TextEditingController();
   StreamSubscription<User> streamSubscription;
 
+  UserGlobalBloc userGlobalBloc;
+
   @override
   void initState() {
     super.initState();
-    streamSubscription = widget.userGlobalBloc.user.listen(
+    userGlobalBloc = Injector.get(force: true);
+    streamSubscription = userGlobalBloc.user.listen(
       (user) {
         streamSubscription.cancel();
         if (AppDialog.close(context)) {
@@ -83,9 +84,9 @@ class _LoginScreenState extends State<LoginScreen>
                           child: Loading(
                             message: "Logining",
                           ),
-                          onWillPop: widget.userGlobalBloc.cancelRequest,
+                          onWillPop: userGlobalBloc.cancelRequest,
                         );
-                        widget.userGlobalBloc.checkValidLogin(
+                        userGlobalBloc.checkValidLogin(
                           account: accountController.text,
                           password: passwordController.text,
                         );
@@ -109,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   Widget streamLogin() {
     return StreamBuilder(
-      stream: widget.userGlobalBloc.validLogin,
+      stream: userGlobalBloc.validLogin,
       builder: (
         BuildContext context,
         AsyncSnapshot<Tuple2<String, String>> snapshot,
@@ -137,4 +138,12 @@ class _LoginScreenState extends State<LoginScreen>
       },
     );
   }
+
+  @override
+  void dispose() {
+    print("Login dispose");
+    super.dispose();
+  }
+
+
 }

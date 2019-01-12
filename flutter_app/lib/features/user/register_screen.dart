@@ -12,10 +12,9 @@ import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
-  final UserGlobalBloc userGlobalBloc;
-
-  const RegisterScreen({Key key, @required this.userGlobalBloc})
-      : super(key: key);
+  const RegisterScreen({
+    Key key,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RegisterScreenState();
@@ -30,6 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen>
   TextEditingController confirmPasswordController = TextEditingController();
 
   StreamSubscription<User> streamSubscription;
+  UserGlobalBloc userGlobalBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +38,12 @@ class _RegisterScreenState extends State<RegisterScreen>
     );
   }
 
-
   @override
   void initState() {
     super.initState();
-    streamSubscription = widget.userGlobalBloc.user.listen(
-          (user) {
+    userGlobalBloc = Injector.get();
+    streamSubscription = userGlobalBloc.user.listen(
+      (user) {
         streamSubscription.cancel();
         Navigator.of(context)
             .pushNamedAndRemoveUntil("/main", (Route<dynamic> route) => false);
@@ -79,10 +79,10 @@ class _RegisterScreenState extends State<RegisterScreen>
                         child: Loading(
                           message: "Registering",
                         ),
-                        onWillPop: widget.userGlobalBloc.cancelRequest,
+                        onWillPop: userGlobalBloc.cancelRequest,
                       );
 
-                      widget.userGlobalBloc.checkValidRegister(
+                      userGlobalBloc.checkValidRegister(
                         username: usernameController.text,
                         accountName: accountNameController.text,
                         email: emailController.text,
@@ -102,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen>
 
   Widget streamRegister() {
     return StreamBuilder(
-      stream: widget.userGlobalBloc.validRegister,
+      stream: userGlobalBloc.validRegister,
       builder: (
         BuildContext context,
         AsyncSnapshot<Tuple5<String, String, String, String, String>> snapshot,
@@ -154,6 +154,4 @@ class _RegisterScreenState extends State<RegisterScreen>
     streamSubscription.cancel();
     super.dispose();
   }
-
-
 }

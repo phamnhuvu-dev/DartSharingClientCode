@@ -11,9 +11,8 @@ import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 import 'package:rxdart/subjects.dart';
 
 class MainScreen extends StatefulWidget {
-  final TaskGlobalBloc taskGlobalBloc;
 
-  const MainScreen({Key key, @required this.taskGlobalBloc}) : super(key: key);
+  const MainScreen({Key key,}) : super(key: key);
 
   static _MainScreenState of(BuildContext context) {
     return context.ancestorStateOfType(const TypeMatcher<_MainScreenState>())
@@ -42,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
       AppNavigator(
         navigatorKey: taskKey,
       ),
-      Injector.get<AboutScreen>(),
+      AboutScreen(),
     ];
   }
 

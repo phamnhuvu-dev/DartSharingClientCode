@@ -19,11 +19,11 @@ class AppNavigator extends StatelessWidget {
         WidgetBuilder builder;
         switch (settings.name) {
           case Routes.task_list:
-            builder = (BuildContext _) => Injector.get<TaskListScreen>();
+            builder = (BuildContext _) => TaskListScreen();
             break;
 
           case Routes.task_detail:
-            builder = (BuildContext _) => Injector.get<TaskDetailScreen>();
+            builder = (BuildContext _) => TaskDetailScreen();
             break;
 
           default:

@@ -15,7 +15,6 @@ export 'src/data/models/task.dart';
 
 // Inject
 export 'src/di/injector.dart';
-export 'src/di/inject_screen.dart';
 export 'src/di/inject_bloc.dart';
 export 'src/di/inject_repository.dart';
 

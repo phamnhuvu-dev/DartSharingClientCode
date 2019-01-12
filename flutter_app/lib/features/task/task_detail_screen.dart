@@ -1,23 +1,37 @@
-import 'package:core_app/core_app.dart' show TaskGlobalBloc;
+import 'package:core_app/core_app.dart' show Injector, TaskGlobalBloc;
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/main/main_frame.dart';
 import 'package:flutter_app/statics/app_colors.dart';
 import 'package:flutter_app/widgets/dialogs/app_dialog.dart';
 import 'package:flutter_app/widgets/dialogs/create_or_update_task.dart';
+import 'package:flutter_app/widgets/dialogs/loading.dart';
 
 class TaskDetailScreen extends StatefulWidget {
-  final TaskGlobalBloc taskGlobalBloc;
 
-  const TaskDetailScreen({Key key, this.taskGlobalBloc}) : super(key: key);
+  const TaskDetailScreen({Key key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TaskDetailScreenState();
 }
 
 class _TaskDetailScreenState extends State<TaskDetailScreen> {
+
+  TaskGlobalBloc taskGlobalBloc;
+  @override
+  void initState() {
+    super.initState();
+
+    taskGlobalBloc = Injector.get();
+
+    taskGlobalBloc.update.listen((updated) {
+      if (AppDialog.close(context)) {
+        setState(() {});
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final taskGlobalBloc = widget.taskGlobalBloc;
     return MainFrame(
       child: SingleChildScrollView(
         child: Column(
@@ -40,11 +54,15 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
         AppDialog.show(
           context: context,
           child: CreateOrUpdateTask(
-            taskGlobalBloc: taskGlobalBloc,
             isCreateTask: false,
             task: taskGlobalBloc.selectedTask,
             onTapCreateOrUpdate: () {
-              setState(() {});
+              AppDialog.show(
+                context: context,
+                child: Loading(
+                  message: "Updating task",
+                ),
+              );
             },
           ),
           backgroundColor: Colors.transparent,

@@ -1,23 +1,30 @@
-import 'package:core_app/core_app.dart' show Routes, User, UserGlobalBloc;
+import 'package:core_app/core_app.dart'
+    show Injector, Routes, User, UserGlobalBloc;
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/main/main_frame.dart';
 
 class AboutScreen extends StatefulWidget {
-  final UserGlobalBloc userGlobalBloc;
-
-  const AboutScreen({Key key, @required this.userGlobalBloc}) : super(key: key);
+  const AboutScreen({Key key}) : super(key: key);
 
   @override
   _AboutScreenState createState() => _AboutScreenState();
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  UserGlobalBloc userGlobalBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    userGlobalBloc = Injector.get();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MainFrame(
       child: Center(
         child: StreamBuilder(
-          stream: widget.userGlobalBloc.user,
+          stream: userGlobalBloc.user,
           builder: (context, AsyncSnapshot<User> snapshot) {
             final user = snapshot.data;
             if (user == null) return Container();
@@ -40,5 +47,11 @@ class _AboutScreenState extends State<AboutScreen> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    userGlobalBloc.dispose();
+    super.dispose();
   }
 }

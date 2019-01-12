@@ -46,9 +46,21 @@ class TaskRepositoryService extends TaskRepository {
   }
 
   @override
-  Future<TaskResponse> update(TaskRequest request) {
-    // TODO: implement update
-    return null;
+  Future<TaskResponse> update(TaskRequest request) async {
+    final task = request.tasks.first;
+    final Response response = await apiService.updateTask(
+      headers: appHeaders,
+      task_id: task.id.toString(),
+      title: task.title,
+      description: task.description,
+    );
+
+    Map json = jsonDecode(response.body);
+    print(json);
+    return TaskResponse(
+      message: json[MESSAGE_KEY],
+      successIDs: [int.parse(json["updated_id"])],
+    );
   }
 
   @override
@@ -67,7 +79,7 @@ class TaskRepositoryService extends TaskRepository {
 
     return TaskResponse(
       message: json[MESSAGE_KEY],
-      deletedIDs: deletedIDs != null ? List<int>.from(deletedIDs) : [],
+      successIDs: deletedIDs != null ? List<int>.from(deletedIDs) : [],
       errorIDs: errorIDs != null ? List<int>.from(errorIDs) : [],
     );
   }

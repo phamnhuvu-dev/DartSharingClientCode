@@ -55,12 +55,12 @@ class TaskGlobalBloc implements Bloc {
 
   int get taskCount => _tasksSubject.value.length;
 
+  //// LOAD
   void loadTasks() async {
     _loading();
 
     _currentPage += 1;
     taskRepository.get(TaskRequest(page: _currentPage)).then((response) {
-
       int length = response.tasks.length;
       if (length < 10) {
         _currentPage -= 1;
@@ -73,7 +73,6 @@ class TaskGlobalBloc implements Bloc {
       currentTask.addAll(response.tasks);
       _tasksSubject.add(currentTask);
       _loaded();
-
     }).catchError((error) {
       print(error);
       _currentPage -= 1;
@@ -81,6 +80,7 @@ class TaskGlobalBloc implements Bloc {
     });
   }
 
+  //// CREATE
   void createTask(Task task) async {
     _loading();
 
@@ -95,9 +95,29 @@ class TaskGlobalBloc implements Bloc {
     });
   }
 
-  PublishSubject<bool> deleteSubject = PublishSubject();
+  //// UPDATE
+  PublishSubject<bool> _updateSubject = PublishSubject();
 
-  Stream<bool> get delete => deleteSubject.stream;
+  Stream<bool> get update => _updateSubject.stream;
+
+  void updateTask() async {
+    _loading();
+
+    taskRepository.update(TaskRequest(tasks: [selectedTask])).then((response) {
+      if (response.successIDs.length == 1) {
+        _updateSubject.add(true);
+        _loaded();
+      } else {
+        _updateSubject.add(false);
+        _loaded();
+      }
+    });
+  }
+
+  //// DELETE
+  PublishSubject<bool> _deleteSubject = PublishSubject();
+
+  Stream<bool> get delete => _deleteSubject.stream;
 
   void deleteTask() async {
     _loading();
@@ -111,12 +131,12 @@ class TaskGlobalBloc implements Bloc {
     taskRepository
         .delete(TaskRequest(tasks: deleteTasks))
         .then((response) async {
-      response.deletedIDs.forEach(
+      response.successIDs.forEach(
           (id) => _tasksSubject.value.removeWhere((task) => id == task.id));
       _tasksSubject.add(_tasksSubject.value);
 
-      final isSuccess = deleteTasks.length == response.deletedIDs.length;
-      deleteSubject.add(isSuccess);
+      final isSuccess = deleteTasks.length == response.successIDs.length;
+      _deleteSubject.add(isSuccess);
       _loaded();
     }).catchError((error) {
       print(error);
@@ -145,4 +165,7 @@ class TaskGlobalBloc implements Bloc {
 //    _taskSubject.close();
     _deleteModeSubject.close();
   }
+
+  @override
+  bool isClose() => _tasksSubject.isClosed;
 }

@@ -14,19 +14,18 @@ class UserGlobalBloc implements Bloc {
   final Validator validator;
   CancelableOperation<User> cancelableOperation;
 
-  BehaviorSubject<User> _userSubject;
+  final BehaviorSubject<User> _userSubject = BehaviorSubject<User>();
 
   UserGlobalBloc({
     this.userRepository,
     this.validator,
-  }) {
-    _userSubject = BehaviorSubject<User>();
-  }
+  });
 
   Stream<User> get user => _userSubject.stream;
 
   //////// Valid Login ////////
-  final _validLoginSubject = BehaviorSubject<Tuple2<String, String>>();
+  final BehaviorSubject<Tuple2<String, String>> _validLoginSubject =
+      BehaviorSubject<Tuple2<String, String>>();
 
   Stream<Tuple2<String, String>> get validLogin => _validLoginSubject.stream;
 
@@ -120,8 +119,8 @@ class UserGlobalBloc implements Bloc {
         messageEmail.isEmpty &&
         messagePassword.isEmpty &&
         messageConfirmPassword.isEmpty) {
-      cancelableOperation = CancelableOperation.fromFuture(userRepository
-          .register(
+      cancelableOperation =
+          CancelableOperation.fromFuture(userRepository.register(
         username: username,
         account_name: accountName,
         email: email,
@@ -162,5 +161,10 @@ class UserGlobalBloc implements Bloc {
   @override
   void dispose() {
     _userSubject.close();
+    _validLoginSubject.close();
+    _validRegisterSubject.close();
   }
+
+  @override
+  bool isClose() => _userSubject.isClosed;
 }
