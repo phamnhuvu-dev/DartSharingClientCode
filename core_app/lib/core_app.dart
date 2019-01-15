@@ -28,7 +28,6 @@ export 'src/statics/routes.dart';
 
 // Src
 export 'package:core_app/src/features/bloc.dart';
-export 'package:core_app/src/features/flutter_global_bloc.dart';
 export 'package:core_app/src/features/user_global_bloc.dart';
 export 'package:core_app/src/features/task_global_bloc.dart';
 
