@@ -3,11 +3,6 @@ import 'package:angular_app/messages/i18n.dart';
 import 'package:angular_app/src/routes/routes.dart';
 import 'package:angular_router/angular_router.dart';
 
-// AngularDart info: https://webdev.dartlang.org/angular
-// Components info: https://webdev.dartlang.org/components
-
-
-
 @Component(
   selector: 'my-app',
   styleUrls: ['app_component.css'],

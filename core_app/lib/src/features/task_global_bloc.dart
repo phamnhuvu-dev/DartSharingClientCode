@@ -1,13 +1,13 @@
 import 'package:core_app/src/data/models/task/task.dart';
 import 'package:core_app/src/data/repositories/task/task_repository.dart';
 import 'package:core_app/src/data/models/task/task_request.dart';
+import 'package:core_app/src/di/injector.dart';
 import 'package:core_app/src/features/bloc.dart';
 import 'package:rxdart/subjects.dart';
 
 class TaskGlobalBloc implements Bloc {
-  TaskGlobalBloc({this.taskRepository});
 
-  final TaskRepository taskRepository;
+  final TaskRepository taskRepository = Injector.get();
 
   int _currentPage = 0;
   int _lastGetItemLength = 0;

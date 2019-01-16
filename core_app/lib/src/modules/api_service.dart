@@ -27,10 +27,9 @@ String _getSymbolName(Symbol symbol) {
 abstract class ApiService {
   @override
   Future<http.Response> noSuchMethod(Invocation invocation) async {
-
     final method = invocation.namedArguments[METHOD];
     final url = invocation.namedArguments[URL];
-    final headers = invocation.namedArguments[HEADERS];
+    final Map<String, String> headers = invocation.namedArguments[HEADERS];
 
     final body = {};
     invocation.namedArguments.forEach((key, value) {
@@ -54,11 +53,7 @@ abstract class ApiService {
         );
 
       case PUT:
-        return await http.put(
-            url,
-            headers: headers,
-            body: body
-        );
+        return await http.put(url, headers: headers, body: body);
 
       case DELETE:
         return await http.delete(

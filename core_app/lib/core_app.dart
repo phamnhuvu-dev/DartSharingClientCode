@@ -17,6 +17,7 @@ export 'package:core_app/src/data/models/task/task.dart';
 export 'src/di/injector.dart';
 export 'src/di/inject_bloc.dart';
 export 'src/di/inject_repository.dart';
+export 'src/di/inject_module.dart';
 
 // Repositories service
 export 'src/data/repositories/user/user_repository_service.dart';

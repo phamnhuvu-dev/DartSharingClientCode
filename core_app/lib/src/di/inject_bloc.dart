@@ -11,16 +11,11 @@ void injectBloc() {
 
   Injector.register<UserGlobalBloc>(
     type: InjectorType.singleton,
-    factoryFunc: () => UserGlobalBloc(
-          userRepository: Injector.get(),
-          validator: Validator(),
-        ),
+    factoryFunc: () => UserGlobalBloc(),
   );
 
   Injector.register<TaskGlobalBloc>(
     type: InjectorType.singleton,
-    factoryFunc: () => TaskGlobalBloc(
-          taskRepository: Injector.get(),
-        ),
+    factoryFunc: () => TaskGlobalBloc(),
   );
 }

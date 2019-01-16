@@ -11,6 +11,7 @@ import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
+  injectModule();
   injectRepository();
   injectBloc();
 

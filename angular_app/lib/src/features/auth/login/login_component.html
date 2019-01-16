@@ -23,7 +23,7 @@
         <input type="password" placeholder="Mật khẩu">
         <button class="round-button dodger-blue-button-theme" (click)="onClickLogin()">{{I18n.login}}</button>
         <button class="round-button malibu-button-theme"
-                [routerLink]="RoutePaths.register.toUrl()"
+                [routerLink]="AuthRoutePaths.register.toUrl()"
                 [routerLinkActive]="'active'">{{I18n.register}}
         </button>
     </div>

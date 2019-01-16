@@ -1,0 +1,5 @@
+.top-nav {
+    display: flex;
+    background-image: linear-gradient(to bottom right, #3CFED0, #48C5FC);
+    height: 64px;
+}

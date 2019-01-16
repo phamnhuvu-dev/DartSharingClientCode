@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:core_app/src/data/models/user/user.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
+import 'package:core_app/src/di/injector.dart';
 import 'package:core_app/src/features/bloc.dart';
 import 'package:core_app/src/modules/api_service.dart';
 import 'package:core_app/src/modules/validator.dart';
@@ -10,16 +11,13 @@ import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
 
 class UserGlobalBloc implements Bloc {
-  final UserRepository userRepository;
-  final Validator validator;
+  final UserRepository userRepository = Injector.get();
+  final Validator validator = Injector.get();
   CancelableOperation<User> cancelableOperation;
 
   final BehaviorSubject<User> _userSubject = BehaviorSubject<User>();
 
-  UserGlobalBloc({
-    this.userRepository,
-    this.validator,
-  });
+  UserGlobalBloc();
 
   Stream<User> get user => _userSubject.stream;
 
@@ -29,7 +27,7 @@ class UserGlobalBloc implements Bloc {
 
   Stream<Tuple2<String, String>> get validLogin => _validLoginSubject.stream;
 
-  checkValidLogin({
+  void checkValidLogin({
     String account,
     String password,
   }) async {
@@ -78,7 +76,7 @@ class UserGlobalBloc implements Bloc {
   Stream<Tuple5<String, String, String, String, String>> get validRegister =>
       _validRegisterSubject.stream;
 
-  checkValidRegister({
+  void checkValidRegister({
     String username,
     String accountName,
     String email,

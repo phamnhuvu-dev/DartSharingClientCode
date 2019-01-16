@@ -1,5 +1,5 @@
 import 'package:angular/angular.dart';
-import 'package:angular_app/src/features/auth/routes/routes.dart';
+import 'package:angular_app/src/features/auth/routes/auth_routes.dart';
 import 'package:angular_router/angular_router.dart';
 
 @Component(
@@ -7,6 +7,6 @@ import 'package:angular_router/angular_router.dart';
   styleUrls: ['auth_component.css'],
   templateUrl: 'auth_component.html',
   directives: [RouterOutlet],
-  exports: [RoutePaths, Routes],
+  exports: [AuthRoutePaths, AuthRoutes],
 )
 class AuthComponent {}
