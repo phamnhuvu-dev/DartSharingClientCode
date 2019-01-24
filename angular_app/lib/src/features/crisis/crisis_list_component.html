@@ -1,0 +1,16 @@
+<h2>Crisis Center</h2>
+<div style="display: flex">
+  <div style="position: fixed; height: 100%; overflow: scroll">
+    <ul class="items">
+      <li *ngFor="let crisis of crises"
+          [class.selected]="crisis === selected"
+          (click)="onSelect(crisis)">
+        <span class="badge">{{crisis.id}}</span> {{crisis.name}}
+      </li>
+    </ul>
+  </div>
+  <div style="margin-left: 500px">
+    <router-outlet [routes]="Routes.all"></router-outlet>
+  </div>
+</div>
+

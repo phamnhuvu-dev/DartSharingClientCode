@@ -2,7 +2,7 @@ import 'dart:html';
 import 'dart:math';
 import 'package:angular/angular.dart';
 import 'package:angular_app/messages/i18n.dart';
-import 'package:angular_app/src/features/auth/routes/auth_routes.dart';
+import 'package:angular_app/src/features/user/routes/auth_routes.dart';
 import 'package:angular_app/src/routes/routes.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:angular_router/angular_router.dart';

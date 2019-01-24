@@ -6,6 +6,8 @@ body {
     padding: 0;
 }
 
+*:focus {outline:none !important}
+
 * {
     font-family: Roboto, Helvetica, Arial, sans-serif;
 }

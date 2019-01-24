@@ -8,7 +8,9 @@ void updateHeaders(Map<String, String> newHeaders) {
   print(appHeaders);
 }
 
-const HOST = "https://dart-sharing-code.herokuapp.com";
+//const HOST = "https://dart-sharing-code.herokuapp.com";
+const HOST = "http://10.0.2.2:8080";
+const WS = "ws://10.0.2.2:8080/ws";
 
 const GET = 0;
 const POST = 1;

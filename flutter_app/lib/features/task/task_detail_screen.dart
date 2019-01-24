@@ -8,7 +8,9 @@ import 'package:flutter_app/widgets/dialogs/loading.dart';
 
 class TaskDetailScreen extends StatefulWidget {
 
-  const TaskDetailScreen({Key key}) : super(key: key);
+  final TaskGlobalBloc taskGlobalBloc;
+
+  const TaskDetailScreen({Key key,@required this.taskGlobalBloc}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TaskDetailScreenState();
@@ -21,7 +23,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
   void initState() {
     super.initState();
 
-    taskGlobalBloc = Injector.get();
+    taskGlobalBloc = widget.taskGlobalBloc;
 
     taskGlobalBloc.update.listen((updated) {
       if (AppDialog.close(context)) {

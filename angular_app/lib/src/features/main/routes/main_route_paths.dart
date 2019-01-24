@@ -11,4 +11,9 @@ class MainRoutePaths {
     path: '/about',
     parent: RoutePaths.main,
   );
+
+  static final crises = RoutePath(
+    path: '/crises',
+    parent: RoutePaths.main,
+  );
 }

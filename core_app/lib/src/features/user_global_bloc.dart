@@ -3,27 +3,28 @@ import 'dart:async';
 import 'package:async/async.dart';
 import 'package:core_app/src/data/models/user/user.dart';
 import 'package:core_app/src/data/repositories/user/user_repository.dart';
-import 'package:core_app/src/di/injector.dart';
 import 'package:core_app/src/features/bloc.dart';
-import 'package:core_app/src/modules/api_service.dart';
+import 'package:core_app/src/modules/network/api_service.dart';
 import 'package:core_app/src/modules/validator.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:tuple/tuple.dart';
 
 class UserGlobalBloc implements Bloc {
-  final UserRepository userRepository = Injector.get();
-  final Validator validator = Injector.get();
+  final UserRepository userRepository;
+  final Validator validator;
+
+  UserGlobalBloc(this.userRepository, this.validator);
+
   CancelableOperation<User> cancelableOperation;
 
-  final BehaviorSubject<User> _userSubject = BehaviorSubject<User>();
-
-  UserGlobalBloc();
+  /////// USER SUBJECT /////
+  BehaviorSubject<User> _userSubject = BehaviorSubject<User>();
 
   Stream<User> get user => _userSubject.stream;
 
   //////// Valid Login ////////
-  final BehaviorSubject<Tuple2<String, String>> _validLoginSubject =
-      BehaviorSubject<Tuple2<String, String>>();
+  BehaviorSubject<Tuple2<String, String>> _validLoginSubject =
+      BehaviorSubject();
 
   Stream<Tuple2<String, String>> get validLogin => _validLoginSubject.stream;
 
@@ -54,6 +55,7 @@ class UserGlobalBloc implements Bloc {
         ),
       );
       cancelableOperation.value.then((user) {
+        print(_userSubject.isClosed);
         _userSubject.add(user);
         updateHeaders(_createHeaders(user));
       }).catchError((error) {
@@ -70,8 +72,8 @@ class UserGlobalBloc implements Bloc {
   }
 
   //////// Valid Register ////////
-  final _validRegisterSubject =
-      BehaviorSubject<Tuple5<String, String, String, String, String>>();
+  BehaviorSubject<Tuple5<String, String, String, String, String>>
+      _validRegisterSubject = BehaviorSubject();
 
   Stream<Tuple5<String, String, String, String, String>> get validRegister =>
       _validRegisterSubject.stream;
@@ -158,11 +160,15 @@ class UserGlobalBloc implements Bloc {
 
   @override
   void dispose() {
+    print("User dispose");
     _userSubject.close();
     _validLoginSubject.close();
     _validRegisterSubject.close();
-  }
 
-  @override
-  bool isClose() => _userSubject.isClosed;
+    print("User refresh");
+    //// Refresh ////
+    _userSubject = BehaviorSubject();
+    _validLoginSubject = BehaviorSubject();
+    _validRegisterSubject = BehaviorSubject();
+  }
 }

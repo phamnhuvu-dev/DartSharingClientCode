@@ -11,8 +11,12 @@ import 'package:flutter_app/widgets/dialogs/loading.dart';
 import 'package:flutter_app/widgets/search_bar.dart';
 
 class TaskListScreen extends StatefulWidget {
+  final TaskGlobalBloc taskGlobalBloc;
 
-  const TaskListScreen({Key key,}) : super(key: key);
+  const TaskListScreen({
+    Key key,
+    @required this.taskGlobalBloc,
+  }) : super(key: key);
 
   static _TaskListScreenState cast(State<TaskListScreen> state) {
     return state as _TaskListScreenState;
@@ -24,12 +28,14 @@ class TaskListScreen extends StatefulWidget {
 
 class _TaskListScreenState extends State<TaskListScreen> {
   TaskGlobalBloc taskGlobalBloc;
+
   final ScrollController scrollController = ScrollController();
   StreamSubscription<bool> loadingSub;
+
   @override
   void initState() {
     super.initState();
-    taskGlobalBloc = Injector.get(force: true);
+    taskGlobalBloc = widget.taskGlobalBloc;
 
     loadingSub = taskGlobalBloc.loading.listen((isLoading) {
       if (!isLoading && context != null) {

@@ -12,8 +12,11 @@ import 'package:flutter_app/widgets/scaffold/gradient_scaffold.dart';
 import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class RegisterScreen extends StatefulWidget {
+  final UserGlobalBloc userGlobalBloc;
+
+
   const RegisterScreen({
-    Key key,
+    Key key,@required this.userGlobalBloc,
   }) : super(key: key);
 
   @override

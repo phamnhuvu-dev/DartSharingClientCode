@@ -1,18 +1,19 @@
 import 'dart:io';
 
-import 'package:core_app/core_app.dart';
+import 'package:core_app/core_app.dart' show Injector;
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/about/about_screen.dart';
-import 'package:flutter_app/widgets/navigator/app_navigator.dart';
 import 'package:flutter_app/modules/device_info.dart';
 import 'package:flutter_app/widgets/bottom_bar/bottom_bar.dart';
 import 'package:flutter_app/widgets/bottom_bar/bottom_bar_item.dart';
+import 'package:flutter_app/widgets/navigator/app_navigator.dart';
 import 'package:flutter_app/widgets/scaffold/white_scaffold.dart';
 import 'package:rxdart/subjects.dart';
 
 class MainScreen extends StatefulWidget {
-
-  const MainScreen({Key key,}) : super(key: key);
+  const MainScreen({
+    Key key,
+  }) : super(key: key);
 
   static _MainScreenState of(BuildContext context) {
     return context.ancestorStateOfType(const TypeMatcher<_MainScreenState>())
@@ -38,10 +39,12 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     currentIndexSubject = BehaviorSubject(seedValue: 0);
     screens = <Widget>[
-      AppNavigator(
+      TaskNavigator(
         navigatorKey: taskKey,
       ),
-      AboutScreen(),
+      AboutScreen(
+        userGlobalBloc: Injector.get(),
+      ),
     ];
   }
 
@@ -87,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
           print("Pop");
           final currentIndex = currentIndexSubject.value;
           if (currentIndex == 0) {
-            return !await (screens[currentIndex] as AppNavigator)
+            return !await (screens[currentIndex] as TaskNavigator)
                 .navigatorKey
                 .currentState
                 .maybePop();

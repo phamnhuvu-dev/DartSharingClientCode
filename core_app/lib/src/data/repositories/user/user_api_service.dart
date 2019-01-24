@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:core_app/src/modules/api_service.dart';
+import 'package:core_app/src/modules/network/api_service.dart';
 import 'package:http/http.dart';
 
 const USER = "/api/user";

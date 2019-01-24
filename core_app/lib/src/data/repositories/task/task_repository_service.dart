@@ -5,7 +5,7 @@ import 'package:core_app/src/data/repositories/task/task_api_service.dart';
 import 'package:core_app/src/data/repositories/task/task_repository.dart';
 import 'package:core_app/src/data/models/task/task_request.dart';
 import 'package:core_app/src/data/models/task/task_response.dart';
-import 'package:core_app/src/modules/api_service.dart';
+import 'package:core_app/src/modules/network/api_service.dart';
 import 'package:http/http.dart';
 
 class TaskRepositoryService extends TaskRepository {

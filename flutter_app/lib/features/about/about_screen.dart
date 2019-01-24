@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/features/main/main_frame.dart';
 
 class AboutScreen extends StatefulWidget {
-  const AboutScreen({Key key}) : super(key: key);
+  final UserGlobalBloc userGlobalBloc;
+
+  const AboutScreen({Key key, @required this.userGlobalBloc}) : super(key: key);
 
   @override
   _AboutScreenState createState() => _AboutScreenState();
@@ -16,7 +18,7 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   void initState() {
     super.initState();
-    userGlobalBloc = Injector.get();
+    userGlobalBloc = widget.userGlobalBloc;
   }
 
   @override
@@ -41,17 +43,12 @@ class _AboutScreenState extends State<AboutScreen> {
       ),
       iconData: Icons.power_settings_new,
       onTapCircleButton: () {
+        userGlobalBloc.dispose();
         Navigator.of(context).pushNamedAndRemoveUntil(
           Routes.initial,
           (Route<dynamic> route) => false,
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    userGlobalBloc.dispose();
-    super.dispose();
   }
 }

@@ -1,8 +1,39 @@
-<div>
-    <input type="text" placeholder="Search..">
-    <ul *ngIf="!tasks.isEmpty">
-        <li *ngFor="let task of tasks">
-            <task-item [task]="task"></task-item>
-        </li>
-    </ul>
+<!--<div class="task-parent">-->
+    <!--<div class="task-list-side">-->
+
+        <!--&lt;!&ndash;SEARCH&ndash;&gt;-->
+        <!--<div class="search-box">-->
+            <!--<input class="search-box-input" type="text" placeholder="Search..">-->
+            <!--<i class="material-icons search-box-icon">search</i>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;LIST&ndash;&gt;-->
+        <!--<div class="task-list">-->
+            <!--<div *ngFor="let task of tasks">-->
+                <!--<task-item [task]="task"-->
+                           <!--(click)="onSelect(task)">-->
+                <!--</task-item>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+
+    <!--&lt;!&ndash;DETAIL&ndash;&gt;-->
+    <!--<div class="task-detail">-->
+        <!--<router-outlet [routes]="TaskRoutes.all"></router-outlet>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div style="display: flex;">
+    <div style="position: fixed; height: 100%; width: 30%; overflow: scroll">
+        <div *ngFor="let task of tasks">
+            <task-item [task]="task"
+                       (click)="onSelect(task)">
+            </task-item>
+        </div>
+    </div>
+    <div class="task-detail">
+        <router-outlet [routes]="TaskRoutes.all"></router-outlet>
+    </div>
 </div>

@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:core_app/src/features/bloc.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:core_app/core_app.dart' show Bloc;
 import 'package:rxdart/subjects.dart';
 
 class FlutterGlobalBloc implements Bloc {
@@ -25,7 +25,4 @@ class FlutterGlobalBloc implements Bloc {
     subscription.cancel();
     _connectivitySubject.close();
   }
-
-  @override
-  bool isClose() => _connectivitySubject.isClosed;
 }

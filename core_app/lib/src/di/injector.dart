@@ -15,8 +15,8 @@ class Injector {
     );
   }
 
-  static D get<D>({bool force = false}) {
-    return _factories[D].getDependency(force);
+  static D get<D>() {
+    return _factories[D].getDependency();
   }
 }
 
@@ -32,13 +32,13 @@ class _Factory<D> {
       this.factoryFunc,
       );
 
-  D getDependency(bool force) {
+  D getDependency() {
     switch (type) {
       case InjectorType.provide:
         return factoryFunc() as D;
 
       case InjectorType.singleton:
-        if (dependency == null || force) {
+        if (dependency == null) {
           dependency = factoryFunc() as D;
         }
         return dependency;

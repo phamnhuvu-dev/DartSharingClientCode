@@ -1,0 +1,51 @@
+.search-box {
+    width: calc(100% - 64px);
+    top: 64px;
+    display: flex;
+    align-items: center;
+    border: 2px solid #36DEE5;
+    margin: 20px;
+    padding: 0 10px 0;
+    height: 40px;
+    border-radius: 40px;
+    background-color: white;
+}
+
+.search-box-input {
+    flex: 1;
+    border: none;
+}
+
+.search-box-icon {
+    color: #36DEE5;
+}
+
+.task-parent {
+    display: flex;
+    width: 100%;
+}
+
+.task-list-side {
+    display: flex;
+    flex: 37.5%;
+    background-color: #f1f1f1;
+    flex-direction: column;
+}
+
+.task-list {
+    display: flex;
+    position: fixed;
+    overflow-y: scroll;
+    top: 150px;
+    bottom: 0;
+    background-color: #f1f1f1;
+    width: 37.5%;
+    flex-direction: column;
+}
+
+.task-detail {
+    flex: 62.5%;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

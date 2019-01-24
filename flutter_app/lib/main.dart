@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import 'package:core_app/core_app.dart';
+import 'package:core_app/core_app.dart'
+    show injectModule, injectRepository, injectBloc, Routes, Injector;
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/features/main/main_screen.dart';
@@ -25,7 +26,6 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,8 +37,12 @@ class App extends StatelessWidget {
       supportedLocales: S.delegate.supportedLocales,
       routes: {
         Routes.main: (context) => MainScreen(),
-        Routes.initial: (context) => LoginScreen(),
-        Routes.register: (context) => RegisterScreen(),
+        Routes.initial: (context) => LoginScreen(
+              userGlobalBloc: Injector.get(),
+            ),
+        Routes.register: (context) => RegisterScreen(
+              userGlobalBloc: Injector.get(),
+            ),
       },
       initialRoute: Routes.initial,
     );

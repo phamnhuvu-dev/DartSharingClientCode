@@ -1,16 +1,20 @@
 import 'package:core_app/src/data/models/task/task.dart';
-import 'package:core_app/src/data/repositories/task/task_repository.dart';
 import 'package:core_app/src/data/models/task/task_request.dart';
-import 'package:core_app/src/di/injector.dart';
+import 'package:core_app/src/data/repositories/task/task_repository.dart';
 import 'package:core_app/src/features/bloc.dart';
+import 'package:core_app/src/modules/network/web_socket_service.dart';
 import 'package:rxdart/subjects.dart';
 
 class TaskGlobalBloc implements Bloc {
 
-  final TaskRepository taskRepository = Injector.get();
+  final TaskRepository taskRepository;
+  final WebSocketService ws = WebSocketService();
 
   int _currentPage = 0;
-  int _lastGetItemLength = 0;
+
+  TaskGlobalBloc(this.taskRepository) {
+    ws.connect();
+  }
 
   ///////////// DELETE MODE SUBJECT //////////////
   BehaviorSubject<bool> _deleteModeSubject = BehaviorSubject(seedValue: false);
@@ -31,9 +35,9 @@ class TaskGlobalBloc implements Bloc {
   ///////////// LOADING SUBJECT ////////////////////
   bool _isLoading = false;
 
-  Stream<bool> get loading => _loadingSubject.stream;
-
   PublishSubject<bool> _loadingSubject = PublishSubject();
+
+  Stream<bool> get loading => _loadingSubject.stream;
 
   void _loading() {
     print(_isLoading);
@@ -64,9 +68,6 @@ class TaskGlobalBloc implements Bloc {
       int length = response.tasks.length;
       if (length < 10) {
         _currentPage -= 1;
-        _lastGetItemLength = length;
-      } else {
-        _lastGetItemLength = 10;
       }
 
       final currentTask = _tasksSubject.value;
@@ -147,11 +148,6 @@ class TaskGlobalBloc implements Bloc {
   ////////////////// TASK SELECT ///////////////
   Task selectedTask;
 
-//
-//  BehaviorSubject<Task> _taskSubject = BehaviorSubject();
-//
-//  Stream<Task> get task => _taskSubject.stream;
-
   void selectTask(Task task) {
     selectedTask = task;
   }
@@ -162,10 +158,18 @@ class TaskGlobalBloc implements Bloc {
     print("Task dispose");
     _tasksSubject.close();
     _loadingSubject.close();
-//    _taskSubject.close();
     _deleteModeSubject.close();
-  }
+    _deleteSubject.close();
 
-  @override
-  bool isClose() => _tasksSubject.isClosed;
+    print("Task refresh");
+    //// Refresh ////
+    _tasksSubject = BehaviorSubject(seedValue: List());
+    _loadingSubject = PublishSubject();
+    _deleteModeSubject = BehaviorSubject(seedValue: false);
+    _deleteSubject = PublishSubject();
+
+    _currentPage = 0;
+    _isLoading = false;
+    selectedTask = null;
+  }
 }

@@ -13,12 +13,17 @@ import 'package:flutter_app/widgets/textfield/rect_textfield.dart';
 
 class LoginScreen extends StatefulWidget {
 
+  final UserGlobalBloc userGlobalBloc;
+
   const LoginScreen({
-    Key key,
+    Key key,@required this.userGlobalBloc,
   }) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginScreenState createState() {
+    print("Create Login State");
+    return _LoginScreenState();
+  }
 }
 
 class _LoginScreenState extends State<LoginScreen>
@@ -31,10 +36,10 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   void initState() {
-    super.initState();
-    userGlobalBloc = Injector.get(force: true);
+    userGlobalBloc = widget.userGlobalBloc;
+
     streamSubscription = userGlobalBloc.user.listen(
-      (user) {
+          (user) {
         streamSubscription.cancel();
         if (AppDialog.close(context)) {
           Navigator.of(context).pushNamedAndRemoveUntil(
@@ -42,6 +47,7 @@ class _LoginScreenState extends State<LoginScreen>
         }
       },
     );
+    super.initState();
   }
 
   @override
@@ -138,12 +144,4 @@ class _LoginScreenState extends State<LoginScreen>
       },
     );
   }
-
-  @override
-  void dispose() {
-    print("Login dispose");
-    super.dispose();
-  }
-
-
 }

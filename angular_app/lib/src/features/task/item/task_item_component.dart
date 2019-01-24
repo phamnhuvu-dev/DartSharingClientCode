@@ -7,5 +7,6 @@ import 'package:core_app/core_app.dart' show Task;
   directives: [coreDirectives],
 )
 class TaskItemComponent {
+  @Input()
   Task task;
 }
